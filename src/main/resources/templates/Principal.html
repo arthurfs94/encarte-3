@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Encarte Digital</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="../static/js/Principal.js"></script>  
+     <script src="../static/js/functions.js"></script>  
+  
+  
+    <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+    
+  .carousel-inner img {
+      width: 90%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+    }
+  }
+   body { 
+    background-image: url('http://2.bp.blogspot.com/-TckClNK8opw/UBl5H-uj6OI/AAAAAAABV6M/550_1ZaSn90/s1600/buen%2Bfin-786727.jpg');  
+/*    background-image: url('http://2.bp.blogspot.com/-TckClNK8opw/UBl5H-uj6OI/AAAAAAABV6M/550_1ZaSn90/s1600/buen%2Bfin-786727.jpg'); */
+   } 
+    .jumbotron{ 
+     background-color:#ffffffbd; 
+    text-align:center; 
+ } 
+   
+  
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/Principal">Encarte Digital</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="ListaProdutos">Estabelecimentos <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+  <li><a tabindex="-1" href="#">Porto Alegre</a></li>
+  <li><a tabindex="-1" href="#">Canoas</a></li> 
+  <li><a tabindex="-1" href="#">Gravatai</a></li>
+  <li><a tabindex="-1" href="#">Outras localidades</a></li>
+    </ul>
+      </li>
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="ListaEncartes">Categorias <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Mercados</a></li>
+          <li><a href="#">Vestuarios</a></li>
+          <li><a href="#">Ferragens</a></li>
+          <li><a href="#">Eletronicos</a></li>
+          <li><a href="#">Outras Categorias</a></li>
+        </ul>
+    </li>
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="ListaMercados">Produtos <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Alimentos</a></li>
+          <li><a href="#">Portateis</a></li>
+          <li><a href="#">Importados</a></li>
+          <li><a href="#">Nacionais</a></li>
+          <li><a href="#">Perfumaria</a></li>
+          <li><a href="#">Cosmeticos</a></li>
+          <li><a href="#">Lazer</a></li>
+          <li><a href="ListaProdutosUsuarios">Todos os Produtos</a></li>
+        </ul>
+      </li>
+<!--       pesquisar -->
+<!--        <form class="navbar-form navbar-left" id="frmPrimcipal"> -->
+   <div class="input-group"> 
+   <div class="navbar-form navbar-left">
+     <input type="text" class="form-control" placeholder="Pesquisar.." id="pesquisaNome"> 
+     <div class="input-group-btn">
+      <button class="btn btn-default" onclick="pesquisaPrincipal()"> 
+         <i class="glyphicon glyphicon-search"></i>
+       </button> 
+<!--     <div class="collapse navbar-collapse" id="myNavbar"> -->
+<!--       <ul class="nav navbar-nav"> -->
+<!--           <li><a href="gerenciamentoProduto">Gerenciamento Produtos</a></li> -->
+<!--           <li><a href="gerenciamentoUsuarios">Gerenciamento Usuários</a></li> -->
+<!--           <li><a href="#">Relatórios</a></li> -->
+<!--       </ul> -->
+<!--       <ul class="nav navbar-nav navbar-right"> -->
+<!--         <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li> -->
+<!--       </ul> -->
+     </div>
+     </div>
+   </div> 
+ </form> 
+	</ul> 
+	<ul class="nav navbar-nav navbar-right">
+      <li><a href="PaginaMercado">QR Code</a></li>
+      <li><a href="/SignIn"><span class="glyphicon glyphicon-log-out"></span> Login_ADM</a></li>
+      <li><a href="/SignInMercado"><span class="glyphicon glyphicon-log-out"></span> Login_Mercado</a></li>
+<!--       <li class="active"><a href="/">Adm</a></li> -->
+    </ul>
+  </div>
+  
+</nav>
+	
+	
+	
+<!-- 	fim dropdowns -->
+	
+	<!-- Menu antigo inicia -->
+<!-- <nav class="navbar navbar-inverse"> -->
+<!--   <div class="container-fluid"> -->
+<!--     <div class="navbar-header"> -->
+<!--       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> -->
+<!--         <span class="icon-bar"></span> -->
+<!--         <span class="icon-bar"></span> -->
+<!--         <span class="icon-bar"></span>                         -->
+<!--       </button> -->
+<!--        <a class="navbar-brand" href="/">Encarte Digital</a> -->
+<!--     </div> -->
+
+<!--      <div class="collapse navbar-collapse" id="myNavbar"> -->
+<!--       <ul class="nav navbar-nav"> -->
+<!--           <li><a href="">Produtos</a></li> -->
+<!--           <li><a href="">Encartes</a></li> -->
+<!--           <li><a href="">Mercados</a></li> -->
+<!--           <li><a href="">QR Code</a></li> -->
+<!--           <li><a href="SignIn">Login</a></li> -->
+<!--       </ul> -->
+<!--       <ul class="nav navbar-nav navbar-right"> -->
+<!--         <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li> -->
+<!--       </ul> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </nav> -->
+<!-- menu antigo termina -->
+<!-- Inicia carrousel -->
+
+<!-- <div id="myCarousel" class="carousel slide" data-ride="carousel"> -->
+<!--     Indicators -->
+<!--     <ol class="carousel-indicators"> -->
+<!--       <li data-target="#myCarousel" data-slide-to="0" class="active"></li> -->
+<!--       <li data-target="#myCarousel" data-slide-to="1"></li> -->
+<!--       <li data-target="#myCarousel" data-slide-to="2"></li> -->
+<!--     </ol> -->
+
+<!--     Wrapper for slides -->
+<!--     <div class="carousel-inner" role="listbox"> -->
+<!--       <div class="item active"> -->
+<!--         <img src="https://www.opopular.com.br/polopoly_fs/1.1093435.1464398345!/image/image.jpg_gen/derivatives/landscape_800/image.jpg" alt="Image"> -->
+<!--         <div class="carousel-caption"> -->
+<!--           <h2>Encarte digital</h2> -->
+<!--           <p>Seu encarte das promoções!</p> -->
+<!--         </div>       -->
+<!--       </div> -->
+
+<!--       <div class="item"> -->
+<!--         <img src="https://www.sm.com.br/portal/principal/arquivos/imagens/20160504_cat_correio_elegante_materia.jpg" alt="Image"> -->
+<!--         <div class="carousel-caption"> -->
+<!--           <h2>Encarte digital</h2> -->
+<!--           <p>Seu encarte das promoções!</p> -->
+<!--         </div>       -->
+<!--       </div> -->
+    
+
+<!--     <div class="item"> -->
+<!--         <img src="https://nowymarketing.pl/i/articles/1350_l2.jpg" alt="Image"> -->
+<!--         <div class="carousel-caption"> -->
+<!--           <h2>Encarte digital</h2> -->
+<!--           <p>Seu encarte das promoções!</p> -->
+<!--         </div>       -->
+<!--       </div> -->
+<!--     </div> -->
+
+<!--     Left and right controls -->
+<!--     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> -->
+<!--       <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> -->
+<!--       <span class="sr-only">Previous</span> -->
+<!--     </a> -->
+<!--     <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> -->
+<!--       <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> -->
+<!--       <span class="sr-only">Next</span> -->
+<!--     </a> -->
+<!-- </div> -->
+
+<!-- Finaliza carrousel -->
+
+ <div class="container">      
+  <h1></h1><br>
+  <p> </p>
+   <div class="jumbotron">
+  <div class="row">
+<!--     <div class="col-sm-6"> -->
+    <h2>Veja Nossos Encartes!</h2>
+<!--     <table class="table table-bordered"> -->
+<!--       <thead> -->
+<!--       	<tr> -->
+<!--   		<td> -->
+     <main5></main5>
+     <pesquisaPrincipal></pesquisaPrincipal>
+<!--      </tr> -->
+<!--       </thead>      -->
+<!--        </div>    -->
+<!--     </table> -->
+     </div>
+	<div class="col-sm-6">
+<!-- 	<div> -->
+<!-- 	<h2>Produtos em Promoção!</h2> -->
+<!-- 	    <table class="table table-bordered"> -->
+<!--       <thead> -->
+<!--       	<tr> -->
+<!--   		<td> -->
+<!--      <main7></main7> -->
+<!--      </tr> -->
+<!--       </thead>      -->
+<!--        </div>    -->
+<!--     </table> -->
+<!-- 	</div> -->
+ </div>
+ </div>
+ </div>
+<br>
+<div class="container text-center">
+  <div class="jumbotron">
+	<h2>Estabelecimentos Conveniados</h2>
+  <!-- geolocation-->
+  
+<h5 id="demo">Clique no botão para obter sua localização:</h5>
+<button onclick="getLocation()">Localizar</button>
+<div id="mapholder"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9o0NjzIy_ygyFbEi374JCVZxZS_8SXzk"></script>
+<script>
+
+var x=document.getElementById("demo");
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition,showError);
+    }
+  else{x.innerHTML="Geolocalização não é suportada nesse browser.";}
+  }
+ 
+function showPosition(position)
+  {
+  lat=position.coords.latitude;
+  lon=position.coords.longitude;
+  latlon=new google.maps.LatLng(lat, lon)
+  mapholder=document.getElementById('mapholder')
+  mapholder.style.height='250px';
+  mapholder.style.width='500px';
+ 
+  var myOptions={
+  center:latlon,zoom:13,
+  mapTypeId:google.maps.MapTypeId.ROADMAP,
+  mapTypeControl:false,
+  navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+  };
+
+  var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
+  var marker=new google.maps.Marker({position:latlon,map:map,title:"Você está Aqui!"});
+  var locations = [
+
+	  ['Zaffari Andradas', -30.0308788,-51.2322628],
+
+	  ['Bourbon Walling', -30.0114057,-51.1610717],
+
+	  ['Bourbon Assis brasil', -30.0065117, -51.1842874]
+
+
+	];
+
+	for (i = 0; i < locations.length; i++) {  
+
+	  marker = new google.maps.Marker({
+
+	position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+
+	    title: locations[i][0],
+
+	    map: map
+
+	  });
+
+	}
+  }
+	
+ 
+function showError(error)
+  {
+  switch(error.code)
+    {
+    case error.PERMISSION_DENIED:
+      x.innerHTML="Usuário rejeitou a solicitação de Geolocalização."
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML="Localização indisponível."
+      break;
+    case error.TIMEOUT:
+      x.innerHTML="O tempo da requisição expirou."
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML="Algum erro desconhecido aconteceu."
+      break;
+    }
+  }
+// function pesquisaPrincipal(param,filtro,localidade, form) {
+// 	console.log("PARAM: "+param)
+// 	console.log("FUNÇÃO PESQUISAR")
+	
+//     $.ajax({
+//         type: "GET",
+//         url: "/produtos/pesquisaEncarte?paramPesquisa="+param+jQuery("#pesquisaNome").val(),
+//         data: null,
+//         contentType: "application/json"
+//     }).done(function (data) {
+//         console.log(data);
+//         jQuery.each(data, function (k, v) {
+//             if (k != "type")
+//                 $("input[name=" + k + "]").val(v);
+//             else
+//             	$("input[value=" + v + "]").prop("checked",true);
+//         });
+//     });
+// }
+
+// function updatePrincipal(param, form) {
+//     json = converteFormEmJSON(form);
+//     console.log(json);
+//     if (json != "null") {
+//         $.ajax({
+//             type: "PUT",
+//             url: "/Principal/" + param,
+//             data: json,
+//             contentType: "application/json"
+//         });
+//     success();
+//     }
+// }
+
+
+</script>
+
+
+ <!--  finaliza geolocation-->
+</div>
+</div> 
+ 
+
+<footer class="container-fluid text-center">
+  <h2>Todos juntos lutando com o meio ambiente!</h2>
+</footer>
+
+</body>
+</html>

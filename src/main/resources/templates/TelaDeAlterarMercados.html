@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../static/js/functions.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="../static/js/Principal.js"></script>
+
+    <title>Tela de Alterar Usuários</title>
+    <!-- Última versão CSS compilada e minificada -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Tema opcional -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Última versão JavaScript compilada e minificada -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</head>
+<style>
+	body { 
+   background-image: url('http://2.bp.blogspot.com/_lS-sZAoamTA/TQurXJpI6wI/AAAAAAAAAyY/rMjAod8Xam8/s1600/re.jpg'); 
+   } </style>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Encarte Digital</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+        </div>
+    </div>
+</nav>
+<br><br><br>
+<div class="container">
+   <div class="jumbotron">
+<h1>Tela de Alterar os Mercados</h1>
+<br>
+    <form id="name-form" method="post">
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1">Procurar</span>
+            <input type="text" class="form-control" placeholder="id Mercado" name="id" id="id_user">
+        </div>
+        <br>
+        <button type="button" class="btn btn-primary" onclick="read('market', 'id_user', 'name-form')">Pesquisar</button>
+        <br>
+        <br>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1">Nome do Mercado</span>
+            <input type="text" class="form-control" placeholder="Nome" name="name">
+        </div>
+        <br>
+        <div class="input-group input-group-lg">
+        <span class="input-group-addon" id="sizing-addon2">Usuario de Acesso</span>
+        <input type="text" class="form-control" placeholder="Usuario" name="username">
+        </div>
+        <br>
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon" id="sizing-addon3">Senha</span>
+            <input type="text" class="form-control" placeholder="senha de Acesso" name="password">
+        </div>
+        <br>
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon" id="sizing-addon4">Loja</span>
+            <input type="text" class="form-control" placeholder="Loja" name="loja">
+        </div>
+        <br>
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon" id="sizing-addon5">CNPJ</span>
+            <input type="text" class="form-control" placeholder="CNPJ" name="cnpj">
+        </div>
+        <br>
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon" id="sizing-addon6">Link</span>
+            <input type="text" class="form-control" placeholder="Link da foto" name="picture">
+        </div>
+        <br>	
+		<div class="input-group">
+            <span class="input">Localidade: </span>
+            <label class="radio-inline"><input type="radio" name="localidade" value="Porto Alegre" checked>Porto Alegre</label>
+            <label class="radio-inline"><input type="radio" name="localidade" value="Canoas">Canoas</label>
+            <label class="radio-inline"><input type="radio" name="localidade" value="Gravatai">Gravatai</label>
+            <label class="radio-inline"><input type="radio" name="localidade" value="Cachoeirinha">Cachoeirinha</label>
+            <label class="radio-inline"><input type="radio" name="localidade" value="Sapucaia">Sapucaia</label>
+            <label class="radio-inline"><input type="radio" name="localidade" value="São Leopoldo">São Leopoldo</label>
+            <label class="radio-inline"><input type="radio" name="localidade" value="Novo Hamburgo">Novo Hamburgo</label>
+        </div>
+        <br>	
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="update('market', 'name-form')">Alterar Mercado</button>
+    </form>
+</div>
+
+<div class="container text-center">  
+<div class="jumbotron">    
+  <h1>Mercados Cadastrados</h1><br>
+  <div class="row">
+    <div class="col-sm-12">
+      
+      <main3></main3>
+    </div>
+    <!--<div class="col-sm-2">
+      <div class="well">
+       <p>Some text..</p>
+      </div>
+      <div class="well">
+       <p>Some text..</p>
+      </div>
+    </div>-->
+  </div>
+</div><br>
+
+</body>
+
+</html>
