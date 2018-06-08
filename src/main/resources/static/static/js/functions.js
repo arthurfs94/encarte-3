@@ -61,11 +61,11 @@ function read(param, id, form) {
 
 function pesquisaPrincipal() {
 	var param = document.querySelector("#pesquisaNome").value;
+	var tipoBusca = document.querySelector("#tipo-busca").value;
 		
 	$.ajax({
         type: "GET",
-        //url: "/produtos/pesquisaFiltro?paramPesquisa="+ param,
-        url: "/produtos/"+ param,
+        url: "/" + tipoBusca + "/"+ param,
         contentType: "application/json",
         success: function(data) {
         	console.log(data);
@@ -123,6 +123,9 @@ function delete_(param, id, form) {
 
 
 function carregarTelaInicial(obj) {
+    
+	var tipoBusca = document.querySelector("#tipo-busca").value;
+	
 	var str = "";
 	for (var i = 0; i < obj.length; i++) {
 		console.log(obj[i])
@@ -134,18 +137,60 @@ function carregarTelaInicial(obj) {
 
 		str += "<dl>";
 		str += "</dd>";
+		
+		str += "<img class='card-img-top' src='" + obj[i].picture
+				+ "' alt='Card image' style='width:60%'>";
 
 		str += "<dl>";
 		str += "</dd>";
-		str += "<strong> Nome do produto: </strong>"
-				+ obj[i].name;
-		str += "<dl>";
-		str += "</dd>";
 		
-		str += "<dl>";
-		str += "</dd>";
-		str += "<strong> valor do produto: </strong>"
-				+ obj[i].value;
+		if(tipoBusca == 'product'){
+			str += "<strong> Nome do produto: </strong>"
+					+ obj[i].name;
+
+			str += "<dl>";
+			str += "</dd>";
+		
+			str += "<dl>";
+			str += "</dd>";
+			
+			str += "<strong> valor do produto: </strong>"
+					+ obj[i].value;
+			
+			
+		}else if(tipoBusca == 'market'){
+			str += "<strong> Nome do Mercado: </strong>"
+					+ obj[i].name;
+		
+			str += "<dl>";
+			str += "</dd>";
+		
+			str += "<dl>";
+			str += "</dd>";
+			
+			str += "<strong> Localidade: </strong>"
+					+ obj[i].localidade;
+			
+		}else if(tipoBusca == 'encarte'){
+			str += "<strong>Nome do Encarte: </strong>" + obj[i].name;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Status: </strong>" + obj[i].status;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Descrição do Encarte: </strong>"
+					+ obj[i].description;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Data de Validade: </strong> " + obj[i].data;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Id do Encarte: </strong> " + obj[i].id;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Categoria: </strong> " + obj[i].type;
+		}
+		
 		str += "<dl>";
 		str += "</dd>";
 
@@ -158,7 +203,6 @@ function carregarTelaInicial(obj) {
 			str += "</div>";
 		}
 	}
-
 
 	document.querySelector("main5").innerHTML = str;
 

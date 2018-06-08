@@ -3,7 +3,7 @@ package com.br.encarte.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +19,14 @@ import com.br.encarte.app.repository.EncarteRepository;
 import com.br.encarte.app.repository.ProductRepository;
 import com.br.encarte.app.specification.ProductSpecification;
 
+import jersey.repackaged.com.google.common.collect.Lists;
+
 @Controller
-@RequestMapping(path = "/produtos")
 public class ProductController {
 
 	@Autowired
 	private EncarteRepository repository;
+	
 	@Autowired
 	private ProductRepository prodRepo;
 
@@ -33,7 +35,6 @@ public class ProductController {
 	private ResultadoPesquisa buscarEncartes(@RequestParam(value = "paramPesquisa")String paramPesquisa) {
 		System.out.println("VALOR PARAM :" + paramPesquisa);
 		ResultadoPesquisa res = new ResultadoPesquisa();
-		List<Encarte> encarte = repository.findAllEncarteParam(paramPesquisa.toUpperCase());
 		res.setEncartes(repository.findAllEncarteParam(paramPesquisa.toUpperCase()));
 		return res;
 	}
@@ -97,10 +98,34 @@ public class ProductController {
         return "ListaProdutosUsuarios";
     }
     
-    @GetMapping("/{name}")
+    @GetMapping("/product/{name}")
     @ResponseBody
     public List<Product> findByName(@PathVariable String name) {
-    	return prodRepo.findAll(ProductSpecification.nome(name));
+    	return prodRepo.findAll(ProductSpecification.name(name));
+    }
+    
+    @ResponseBody
+    @GetMapping("/product")
+    public List<Product> findAll() {
+    	return Lists.newArrayList(prodRepo.findAll());
+    }
+    
+    @GetMapping("/market/{idMarket}/product")
+    @ResponseBody
+    public List<Product> findProductByMarket(@PathVariable Long idMarket) {
+    	Specifications<Product> where = null;
+    	where = Specifications.where(ProductSpecification.marketId(idMarket));
+    	return prodRepo.findAll(where);
+    }
+    
+    @GetMapping("/market/{idMarket}/product/{prodName}")
+    @ResponseBody
+    public List<Product> findByProductMarket(@PathVariable Long idMarket, @PathVariable String prodName) {
+    	Specifications<Product> where = null;
+    	where = Specifications.where(ProductSpecification.name(prodName));
+    	where = where.and(Specifications.where(ProductSpecification.marketId(idMarket)));
+    	
+    	return prodRepo.findAll(where);
     }
     
 }

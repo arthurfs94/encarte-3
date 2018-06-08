@@ -61,10 +61,7 @@
   <li><a tabindex="-1" href="#">Porto Alegre</a></li>
   <li><a tabindex="-1" href="#">Canoas</a></li> 
   <li><a tabindex="-1" href="#">Gravatai</a></li>
-  <li><a tabindex="-1" href="#">Cachoeirinha</a></li>
-  <li><a tabindex="-1" href="#">Sapucaia</a></li>
-  <li><a tabindex="-1" href="#">São Leopoldo</a></li>
-  <li><a tabindex="-1" href="#">Novo Hamburgo</a></li>
+  <li><a tabindex="-1" href="#">Outras localidades</a></li>
     </ul>
       </li>
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="ListaEncartes">Categorias <span class="caret"></span></a>
@@ -73,41 +70,43 @@
           <li><a href="#">Vestuarios</a></li>
           <li><a href="#">Ferragens</a></li>
           <li><a href="#">Eletronicos</a></li>
+          <li><a href="#">Outras Categorias</a></li>
         </ul>
     </li>
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="ListaMercados">Produtos <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Frutas</a></li>
-          <li><a href="#">Chocolate</a></li>
-          <li><a href="#">Padaria</a></li>
-          <li><a href="#">Bebidas</a></li>
-          <li><a href="#">Frios</a></li>
-          <li><a href="#">Biscoitos</a></li>
-          <li><a href="#">Carnes</a></li>
+          <li><a href="#">Alimentos</a></li>
+          <li><a href="#">Portateis</a></li>
+          <li><a href="#">Importados</a></li>
+          <li><a href="#">Nacionais</a></li>
+          <li><a href="#">Perfumaria</a></li>
+          <li><a href="#">Cosmeticos</a></li>
+          <li><a href="#">Lazer</a></li>
           <li><a href="ListaProdutosUsuarios">Todos os Produtos</a></li>
         </ul>
       </li>
-<!--       pesquisar -->
-<!--        <form class="navbar-form navbar-left" id="frmPrimcipal"> -->
-   <div class="input-group"> 
-   <div class="navbar-form navbar-left">
-     <input type="text" class="form-control" placeholder="Pesquisar.." id="pesquisaNome"> 
-     <div class="input-group-btn">
-      <button class="btn btn-default" onclick="pesquisaPrincipal()"> 
-         <i class="glyphicon glyphicon-search"></i>
-       </button> 
-<!--     <div class="collapse navbar-collapse" id="myNavbar"> -->
-<!--       <ul class="nav navbar-nav"> -->
-<!--           <li><a href="gerenciamentoProduto">Gerenciamento Produtos</a></li> -->
-<!--           <li><a href="gerenciamentoUsuarios">Gerenciamento Usuários</a></li> -->
-<!--           <li><a href="#">Relatórios</a></li> -->
-<!--       </ul> -->
-<!--       <ul class="nav navbar-nav navbar-right"> -->
-<!--         <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li> -->
-<!--       </ul> -->
-     </div>
-     </div>
-   </div> 
+
+	<li>
+		<a> 
+	      <select class="form-control" id="tipo-busca">
+	        <option value="product">Produtos</option>
+	        <option value="market">Mercados</option>
+	        <option value="encarte">Encartes</option>
+	      </select>
+    	</a>
+	</li>
+
+   <li>
+   		<a>		
+	     <input type="text" class="form-control" placeholder="Pesquisar.." id="pesquisaNome"> 
+	     
+	      <button class="btn btn-default" onclick="pesquisaPrincipal()"> 
+	         <i class="glyphicon glyphicon-search"></i>
+	       </button> 
+	    </a>
+   </li>  
+     
+ 
  </form> 
 	</ul> 
 	<ul class="nav navbar-nav navbar-right">
