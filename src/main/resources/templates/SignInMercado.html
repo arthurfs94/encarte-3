@@ -117,7 +117,77 @@
             }
         }
         }*/
-    </script>
+        
+
+	function post(){
+		var username = document.getElementById("username").value;
+		var password = document.getElementById("password").value;
+		
+		$.ajax({
+		    url: '/efetuaLoginMercado',
+		    type: 'POST',
+		    contentType: 'application/json',
+		    data: JSON.stringify({
+		        username: $('#username').val(),
+		        password: $('#password').val(),
+		    }),
+		    success: function(data, textStatus, request){
+	    	
+<!--	    	window.location.replace("/Mercado"); localStorage.setItem('token', request.getResponseHeader('Authorization')); // write --/>
+		    	document.cookie = "Authorization=" + request.getResponseHeader('Authorization');
+		    	
+		    	
+		    $.ajax({
+			    url: '/Mercado',
+			    type: 'GET',
+			    contentType: 'application/json',
+			    success: function(data){
+			    	
+		    	document.open();
+		        document.write(data);
+		        document.close();
+	            
+		        }
+		    });
+		    
+		    
+		        
+		   },
+		   error: function (request, textStatus, errorThrown) {
+		        alert(request.getResponseHeader('some_header'));
+		   }
+		});
+	}
+	
+	function parseJwt (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(window.atob(base64));
+    };
+    
+    
+
+(function(open) {
+    XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
+        this.addEventListener("readystatechange", function() {
+			if (this.readyState == 4) 
+            { 
+				console.log(this.status);
+			}
+        }, false);
+        open.call(this, method, url, async, user, pass);
+		this.setRequestHeader("Authorization", getCookie('Authorization'))
+    };
+})(XMLHttpRequest.prototype.open);
+
+
+function getCookie(name) {
+    function escape(s) { return s.replace(/([.*+?\^${}()|\[\]\/\\])/g, '\\$1'); };
+    var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
+    return match ? match[1] : null;
+}
+    
+</script>
     
     <style>
        body { 
@@ -231,12 +301,15 @@
 <br>
     <div class="main">	
         <h2>Login</h2>
-        <form id="form_id" method="post" name="myform" action="/efetuaLoginMercado">
+<!--        <form name="myform"> -->
+<!--            <form  method="POST" name="myform"> -->
+        <form method="post" id="myform" action="/efetuaLoginMercado">
             <label class="sr-only"> User Name :</label>
             <input class="form-control" placeholder="Username" type="text" name="username" id="username"/>
             <label class="sr-only">Password :</label>
             <input class="form-control" placeholder="Password" type="password" name="password" id="password"/>
-            <button type="submit" value="Login" id="submit">Login</button>
+<!--            <button type="submit" value="Login" id="submit" onclick="post();">Login</button> -->
+            <input id="clickMe" type="button" value="Login" onclick="post();" />
         </form>
         <br>
         <span><b class="text-danger">Note : </b>Troca de senha entrar em contato com o administrador.<br/></span>

@@ -5,14 +5,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.br.encarte.app.entity.Client;
-import com.br.encarte.app.entity.Market;
 import com.br.encarte.app.repository.ClientRepository;
 import com.br.encarte.app.repository.MarketRepository;
 import com.br.encarte.app.service.ClientService;
-import com.br.encarte.app.service.MarketService;
 
 @Controller
 public class LoginController {

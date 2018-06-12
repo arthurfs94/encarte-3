@@ -207,3 +207,23 @@ function carregarTelaInicial(obj) {
 	document.querySelector("main5").innerHTML = str;
 
 }
+
+(function(open) {
+    XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
+        this.addEventListener("readystatechange", function() {
+			if (this.readyState == 4) 
+            { 
+				console.log(this.status);
+			}
+        }, false);
+        open.call(this, method, url, async, user, pass);
+		//this.setRequestHeader("Authorization", getCookie('Authorization'))
+    };
+})(XMLHttpRequest.prototype.open);
+
+
+function getCookie(name) {
+    function escape(s) { return s.replace(/([.*+?\^${}()|\[\]\/\\])/g, '\\$1'); };
+    var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
+    return match ? match[1] : null;
+}

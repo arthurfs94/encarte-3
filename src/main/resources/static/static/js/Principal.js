@@ -21,20 +21,20 @@
 window.onload = function() {
 	// setInterval(carregar,1000);
 	carregar();
-	getLocation();
+	// getLocation();
 }
 
 function carregar() {
-	buscaUsuario();
+	 buscaUsuario();
 	buscaProduto();
 	buscaMercado();
 	buscaEncarte();
-	buscaEncarte2();
-	buscaEncarte3();
+	//buscaEncarte2();
+	//buscaEncarte3();
 	buscaCliente();
-	buscaProdutoPrincipal();
+	//buscaProdutoPrincipal();
 	buscaProduct2();
-	pesquisaPrincipal();
+	//pesquisaPrincipal();
 
 }
 
@@ -45,12 +45,12 @@ function buscaUsuario() {
 			// alert(this.responseText);
 			var encarte = JSON.parse(this.responseText);
 			console.log(encarte);
-			carregaUsuario(encarte);
+			//carregaUsuario(encarte);
 			// carregaProduto(encarte);
 		}
 	}
 
-	xhttp.open("GET", "http://localhost:8080/encarte/client", true);
+	xhttp.open("GET", "/encarte/client", true);
 	// xhttp.open("GET","http://localhost:8080/encarte/product",true);
 	xhttp.send();
 }
@@ -110,7 +110,7 @@ function buscaProduto() {
 			var encarte = JSON.parse(this.responseText);
 			console.log(encarte);
 			// carregaMercado(encarte);
-			carregaProduto(encarte);
+			//carregaProduto(encarte);
 
 		}
 	}
@@ -192,7 +192,7 @@ function buscaMercado() {
 			// alert(this.responseText);
 			var encarte = JSON.parse(this.responseText);
 			console.log(encarte);
-			carregaMercado(encarte);
+			//carregaMercado(encarte);
 			// carregaMercado(encarte);
 		}
 	}
@@ -336,7 +336,7 @@ function carregaEncarte(encarte) {
 
 	}
 	console.log(str);
-	document.querySelector("main4").innerHTML = str;
+	document.querySelector("main5").innerHTML = str;
 	// var main = document.getElementsByTagName("main");
 	// main[0].innerHTML = motores[0].nome;
 
@@ -612,7 +612,7 @@ function carregaProduto2(product) {
 
 	// var main = document.getElementsByTagName("main");
 	// main[0].innerHTML = motores[0].nome;
-	document.querySelector("product").innerHTML = str;
+	//document.querySelector("product").innerHTML = str;
 
 }
 
@@ -692,3 +692,5 @@ function carregaPesquisaPrincipal(pesquisaFiltro) {
 	document.querySelector("pesquisaPrincipal").innerHTML = str;
 
 }
+
+
