@@ -25,15 +25,15 @@ window.onload = function() {
 }
 
 function carregar() {
-	 buscaUsuario();
-	buscaProduto();
-	buscaMercado();
-	buscaEncarte();
+	 //buscaUsuario();
+	//buscaProduto();
+	//buscaMercado();
+	//buscaEncarte();
 	//buscaEncarte2();
 	//buscaEncarte3();
-	buscaCliente();
+	//buscaCliente();
 	//buscaProdutoPrincipal();
-	buscaProduct2();
+	//buscaProduct2();
 	//pesquisaPrincipal();
 
 }
@@ -44,7 +44,6 @@ function buscaUsuario() {
 		if (this.readyState == 4 && this.status == 200) {
 			// alert(this.responseText);
 			var encarte = JSON.parse(this.responseText);
-			console.log(encarte);
 			//carregaUsuario(encarte);
 			// carregaProduto(encarte);
 		}
@@ -58,7 +57,6 @@ function buscaUsuario() {
 function carregaUsuario(client) {
 	var str = "";
 	for (var i = 0; i < client.length; i++) {
-		console.log(client[i]);
 
 		if (i % 3 == 0) {
 			str += "<div class='row'>";
@@ -108,7 +106,6 @@ function buscaProduto() {
 		if (this.readyState == 4 && this.status == 200) {
 			// alert(this.responseText);
 			var encarte = JSON.parse(this.responseText);
-			console.log(encarte);
 			// carregaMercado(encarte);
 			//carregaProduto(encarte);
 
@@ -123,7 +120,6 @@ function buscaProduto() {
 function carregaProduto(product) {
 	var str = "";
 	for (var i = 0; i < product.length; i++) {
-		console.log(product[i])
 
 		if (i % 3 == 0) {
 			str += "<div class='row'>";
@@ -191,7 +187,6 @@ function buscaMercado() {
 		if (this.readyState == 4 && this.status == 200) {
 			// alert(this.responseText);
 			var encarte = JSON.parse(this.responseText);
-			console.log(encarte);
 			//carregaMercado(encarte);
 			// carregaMercado(encarte);
 		}
@@ -205,7 +200,6 @@ function buscaMercado() {
 function carregaMercado(market) {
 	var str = "";
 	for (var i = 0; i < market.length; i++) {
-		console.log(market[i]);
 
 		if (i % 3 == 0) {
 			str += "<div class='row'>";
@@ -260,21 +254,34 @@ function buscaEncarte() {
 		if (this.readyState == 4 && this.status == 200) {
 			// alert(this.responseText);
 			var encarte = JSON.parse(this.responseText);
-			console.log(encarte);
 			carregaEncarte(encarte);
 			// carregaProduto(encarte);
 		}
 	}
 
-	xhttp.open("GET", "http://localhost:8080/encarte/encarte", true);
+	xhttp.open("GET", "/market/" + getCookie("id_market") + "/encarte", true);
 	// xhttp.open("GET","http://localhost:8080/encarte/product",true);
+	xhttp.send();
+}
+
+function buscaEncartePrincipal() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			// alert(this.responseText);
+			var encarte = JSON.parse(this.responseText);
+			carregaEncarte(encarte);
+			// carregaProduto(encarte);
+		}
+	}
+
+	xhttp.open("GET", "/encarte", true);
 	xhttp.send();
 }
 
 function carregaEncarte(encarte) {
 	var str = "";
 	for (var i = 0; i < encarte.length; i++) {
-		console.log(encarte[i]);
 
 		if (i % 3 == 0) {
 			str += "<div class='row'>";
@@ -335,7 +342,6 @@ function carregaEncarte(encarte) {
 		}
 
 	}
-	console.log(str);
 	document.querySelector("main5").innerHTML = str;
 	// var main = document.getElementsByTagName("main");
 	// main[0].innerHTML = motores[0].nome;
@@ -348,7 +354,6 @@ function buscaEncarte2() {
 		if (this.readyState == 4 && this.status == 200) {
 			// alert(this.responseText);
 			var encarte = JSON.parse(this.responseText);
-			console.log(encarte);
 			carregaEncarte2(encarte);
 			// carregaProduto(encarte);
 		}
@@ -363,7 +368,6 @@ function carregaEncarte2(encarte) {
 	var str = "";
 	var inicio = true;
 	for (var i = 0; i < encarte.length; i++) {
-		console.log(encarte[i]);
 
 		if (inicio) {
 			str += "<div class=\"item active\">";
@@ -380,7 +384,6 @@ function carregaEncarte2(encarte) {
 		str += "</div>";
 
 	}
-	console.log(str);
 	document.querySelector("#principal-encarte").innerHTML = str;
 	// var main = document.getElementsByTagName("main");
 	// main[0].innerHTML = motores[0].nome;
@@ -393,7 +396,6 @@ function buscaCliente() {
 		if (this.readyState == 4 && this.status == 200) {
 			// alert(this.responseText);
 			var encarte = JSON.parse(this.responseText);
-			console.log(encarte);
 			carregaCliente(encarte);
 			// carregaProduto(encarte);
 		}
@@ -403,7 +405,6 @@ function buscaCliente() {
 function carregaCliente(client) {
 	var str = "";
 	for (var i = 0; i < client.length; i++) {
-		console.log(client[i]);
 		str += "<strong> Nome do Usuário: </strong>" + client[i].name;
 	}
 	document.querySelector("main6").innerHTML = str;
@@ -419,7 +420,6 @@ function buscaProdutoPrincipal() {
 		if (this.readyState == 4 && this.status == 200) {
 			// alert(this.responseText);
 			var encarte = JSON.parse(this.responseText);
-			console.log(encarte);
 			// carregaMercado(encarte);
 			carregaProdutoPrincipal(encarte);
 
@@ -434,7 +434,6 @@ function buscaProdutoPrincipal() {
 function carregaProdutoPrincipal(product) {
 	var str = "";
 	for (var i = 0; i < product.length; i++) {
-		console.log(product[i])
 
 		if (i % 3 == 0) {
 			str += "<div class='row'>";
@@ -490,7 +489,6 @@ function buscaEncarte3() {
 		if (this.readyState == 4 && this.status == 200) {
 			// alert(this.responseText);
 			var encarte = JSON.parse(this.responseText);
-			console.log(encarte);
 			carregaEncarte3(encarte);
 			// carregaProduto(encarte);
 		}
@@ -504,7 +502,6 @@ function buscaEncarte3() {
 function carregaEncarte3(encarte) {
 	var str = "";
 	for (var i = 0; i < encarte.length; i++) {
-		console.log(encarte[i]);
 
 		if (i % 3 == 0) {
 			str += "<div class='row'>";
@@ -555,7 +552,6 @@ function buscaProduct2() {
 		if (this.readyState == 4 && this.status == 200) {
 			// alert(this.responseText);
 			var encarte = JSON.parse(this.responseText);
-			console.log(encarte);
 			// carregaMercado(encarte);
 			carregaProduto2(encarte);
 
@@ -570,7 +566,6 @@ function buscaProduct2() {
 function carregaProduto2(product) {
 	var str = "";
 	for (var i = 0; i < product.length; i++) {
-		console.log(product[i])
 
 		if (i % 3 == 0) {
 			str += "<div class='row'>";
@@ -629,7 +624,6 @@ function pesquisaPrincipal() {
 		if (this.readyState == 4 && this.status == 200) {
 			// alert(this.responseText);
 			var encarte = JSON.parse(this.responseText);
-			console.log(encarte);
 			// carregaMercado(encarte);
 			carregaPesquisaPrincipal(encarte);
 
@@ -643,7 +637,6 @@ function pesquisaPrincipal() {
 function carregaPesquisaPrincipal(pesquisaFiltro) {
 	var str = "";
 	for (var i = 0; i < pesquisaFiltro.length; i++) {
-		console.log(pesquisaFiltro[i])
 
 		if (i % 3 == 0) {
 			str += "<div class='row'>";
@@ -691,6 +684,53 @@ function carregaPesquisaPrincipal(pesquisaFiltro) {
 	// main[0].innerHTML = motores[0].nome;
 	document.querySelector("pesquisaPrincipal").innerHTML = str;
 
+}
+
+function redirect(link){
+	    	
+	$.ajax({
+	    //url: "/market/" + getCookie("id_market") + link ,
+	    url: link,
+	    type: 'GET',
+	    contentType: 'application/json',
+	    success: function(data){
+	    	
+	    	document.open();
+	        document.write(data);
+	        document.close();
+	    
+	    }
+	});
+	
+}
+
+function buscarMercado(link){
+	    	
+	$.ajax({
+	    url: "/market/" + getCookie("id_market") + link ,
+	    type: 'GET',
+	    contentType: 'application/json',
+	    success: function(data){
+	    	
+	    	document.open();
+	        document.write(data);
+	        document.close();
+	    
+	    }
+	});
+}
+
+function buscarItemMercado(nome, tipo){
+	    	
+	$.ajax({
+	    url: "/market/" + getCookie("id_market") + "/" + tipo + "/" + nome ,
+	    type: 'GET',
+	    contentType: 'application/json',
+	    success: function(data){
+			carregarBuscaItem(data, tipo);    	
+	    
+	    }
+	});
 }
 
 

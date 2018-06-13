@@ -23,7 +23,7 @@ public class Client implements Serializable {
     @Column(name = "NAME", length = 100)
     private String name;
 
-    @Column(name = "USERNAME", length = 100)
+    @Column(name = "USERNAME", length = 100, unique = true)
     private String username;
 
     @Column(name = "PASSWORD", length = 15)

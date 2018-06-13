@@ -49,17 +49,17 @@ public class LoginController {
 	// finaliza autenticação do sistema via sql
 
 	// autenticar login se usario.
-	@RequestMapping("/efetuaLogin")
-	public String efetuaLogin(Client usuario, HttpSession session) {
-		System.out.println("EFETUAR LOGIN");
-		for (Client c : new ClientService(clientRepository).listAll()) {
-			if (c.getUsername().equals(usuario.getUsername()) && c.getPassword().equals(usuario.getPassword())) {
-				session.setAttribute("usuarioLogado", usuario);
-				return "redirect:/";
-			}
-		}
-		return "redirect:/SignIn";
-	}
+//	@RequestMapping("/efetuaLogin")
+//	public String efetuaLogin(Client usuario, HttpSession session) {
+//		System.out.println("EFETUAR LOGIN");
+//		for (Client c : new ClientService(clientRepository).listAll()) {
+//			if (c.getUsername().equals(usuario.getUsername()) && c.getPassword().equals(usuario.getPassword())) {
+//				session.setAttribute("usuarioLogado", usuario);
+//				return "redirect:/";
+//			}
+//		}
+//		return "redirect:/SignIn";
+//	}
 	
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {

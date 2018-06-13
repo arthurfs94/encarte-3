@@ -48,7 +48,7 @@ public class LoginControllerMercado {
 
 	// autenticar login se usuario.
 //	@RequestMapping("/efetuaLoginMercado")
-//	public String efetuaLoginMercado(Market mercado, HttpSession session) {
+//	public String efetuaLoginMercado() {
 //		System.out.println("LOGIN MERCADO");
 //		System.out.println("USERNAME: "+mercado.getUsername());
 //		

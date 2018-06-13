@@ -6,16 +6,12 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
+import com.br.encarte.app.entity.Client;
 import com.br.encarte.app.entity.Market;
 
-public class MarketSpecification implements Specification<Market>{
+public class ClientSpecification implements Specification<Market>{
 
-	public static Specification<Market> name (String name){
-		return (root, criteriaQuery, criteriaBuilder) ->
-    		criteriaBuilder.like( criteriaBuilder.lower(root.<String>get("name")), "%" + name.toLowerCase() + "%");
-	}
-	
-	public static Specification<Market> username (String username){
+	public static Specification<Client> username (String username){
 		return (root, criteriaQuery, criteriaBuilder) ->
 		criteriaBuilder.like( root.<String>get("username"), username);
 	}

@@ -1,5 +1,4 @@
 function converteFormEmJSON(form) {
-    console.log('ConvertFormToJSON invoked!');
     var array = jQuery("#" + form).serializeArray();
     var json = {};
     jQuery.each(array, function () {
@@ -12,7 +11,6 @@ function converteFormEmJSON(form) {
         }
     });
     json = JSON.stringify(json);
-    console.log('JSON: ' + json);
 
     return json;
 }
@@ -47,7 +45,6 @@ function read(param, id, form) {
         data: null,
         contentType: "application/json"
     }).done(function (data) {
-        console.log(data);
         jQuery.each(data, function (k, v) {
             if (k != "type")
                 $("input[name=" + k + "]").val(v);
@@ -68,7 +65,6 @@ function pesquisaPrincipal() {
         url: "/" + tipoBusca + "/"+ param,
         contentType: "application/json",
         success: function(data) {
-        	console.log(data);
       		carregarTelaInicial(data);
       		return; 
     	}
@@ -78,7 +74,6 @@ function pesquisaPrincipal() {
 
 function updatePrincipal(param, form) {
     json = converteFormEmJSON(form);
-    console.log(json);
     if (json != "null") {
         $.ajax({
             type: "PUT",
@@ -96,7 +91,6 @@ function updatePrincipal(param, form) {
 
 function update(param, form) {
     json = converteFormEmJSON(form);
-    console.log(json);
     if (json != "null") {
         $.ajax({
             type: "PUT",
@@ -128,7 +122,97 @@ function carregarTelaInicial(obj) {
 	
 	var str = "";
 	for (var i = 0; i < obj.length; i++) {
-		console.log(obj[i])
+
+		if (i % 3 == 0) {
+			str += "<div class='row'>";
+		}
+		str += "<div class='col-sm-4'>";
+
+		str += "<dl>";
+		str += "</dd>";
+		
+		str += "<img class='card-img-top' src='" + obj[i].picture
+				+ "' alt='Card image' style='width:60%'>";
+
+		str += "<dl>";
+		str += "</dd>";
+		
+		if(tipoBusca == 'product'){
+			str += "<strong> Nome do produto: </strong>"
+					+ obj[i].name;
+
+			str += "<dl>";
+			str += "</dd>";
+		
+			str += "<dl>";
+			str += "</dd>";
+			
+			str += "<strong> valor do produto: </strong>"
+					+ obj[i].value;
+			
+			
+		}else if(tipoBusca == 'market'){
+			str += "<strong> Nome do Mercado: </strong>"
+					+ obj[i].name;
+		
+			str += "<dl>";
+			str += "</dd>";
+		
+			str += "<dl>";
+			str += "</dd>";
+			
+			str += "<strong> Localidade: </strong>"
+					+ obj[i].localidade;
+			
+		}else if(tipoBusca == 'encarte'){
+			str += "<strong>Nome do Encarte: </strong>" + obj[i].name;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Status: </strong>" + obj[i].status;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Descrição do Encarte: </strong>"
+					+ obj[i].description;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Data de Validade: </strong> " + obj[i].data;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Id do Encarte: </strong> " + obj[i].id;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Categoria: </strong> " + obj[i].type;
+		}
+		
+		str += "<dl>";
+		str += "</dd>";
+
+		str += "<dl>";
+		str += "</dl>";
+
+		str += "</div>";
+
+		if (i % 3 == 2) {
+			str += "</div>";
+		}
+	}
+
+	document.querySelector("main5").innerHTML = str;
+
+}
+
+function getCookie(name) {
+	var value = "; " + document.cookie;
+	var parts = value.split("; " + name + "=");
+	if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+function carregarBuscaItem(obj, tipo) {
+    
+	var tipoBusca = tipo;
+	
+	var str = "";
+	for (var i = 0; i < obj.length; i++) {
 
 		if (i % 3 == 0) {
 			str += "<div class='row'>";
@@ -213,7 +297,6 @@ function carregarTelaInicial(obj) {
         this.addEventListener("readystatechange", function() {
 			if (this.readyState == 4) 
             { 
-				console.log(this.status);
 			}
         }, false);
         open.call(this, method, url, async, user, pass);

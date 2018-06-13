@@ -70,7 +70,13 @@ public class MarketController {
     @ResponseBody
     @GetMapping("/market/{name}")
     public List<Market> findByName(@PathVariable String name) {
-    	return marketRepository.findAll(MarketSpecification.nome(name));
+    	return marketRepository.findAll(MarketSpecification.name(name));
+    }
+ 
+    @ResponseBody
+    @GetMapping("/market/username/{username}")
+    public List<Market> findByUsername(@PathVariable String username) {
+    	return marketRepository.findAll(MarketSpecification.username(username));
     }
     
     @ResponseBody

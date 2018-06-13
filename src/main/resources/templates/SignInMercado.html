@@ -39,7 +39,6 @@
                 {
                     //alert(this.responseText);
                     var encarte = JSON.parse(this.responseText);
-                    console.log(encarte);
                     validaMercado(encarte);
                     //carregaProduto(encarte);
 
@@ -69,7 +68,6 @@
                         document.getElementById("submit").disabled = true;
                         return false;
                     }
-                    console.log(market[i]);
                     str += "<dl>";
                     str += "<dd>";
                     str += "<img src='"+market[i].picture+ "'>";
@@ -124,7 +122,7 @@
 		var password = document.getElementById("password").value;
 		
 		$.ajax({
-		    url: '/efetuaLoginMercado',
+		    url: '/login',
 		    type: 'POST',
 		    contentType: 'application/json',
 		    data: JSON.stringify({
@@ -132,25 +130,31 @@
 		        password: $('#password').val(),
 		    }),
 		    success: function(data, textStatus, request){
-	    	
-<!--	    	window.location.replace("/Mercado"); localStorage.setItem('token', request.getResponseHeader('Authorization')); // write --/>
+		    
 		    	document.cookie = "Authorization=" + request.getResponseHeader('Authorization');
 		    	
-		    	
-		    $.ajax({
-			    url: '/Mercado',
-			    type: 'GET',
-			    contentType: 'application/json',
-			    success: function(data){
-			    	
-		    	document.open();
-		        document.write(data);
-		        document.close();
-	            
-		        }
-		    });
-		    
-		    
+		    	$.ajax({
+				    url: '/market/username/' + (parseJwt(request.getResponseHeader('Authorization'))).sub,
+				    type: 'GET',
+				    contentType: 'application/json',
+				    success: function(data){
+
+						document.cookie = "id_market=" +  data[0].id;				    	
+
+					    $.ajax({
+						    url: '/Mercado',
+						    type: 'GET',
+						    contentType: 'application/json',
+						    success: function(data){
+						    	
+						    	document.open();
+						        document.write(data);
+						        document.close();
+				            
+					        }
+					    });
+							        }
+			    });
 		        
 		   },
 		   error: function (request, textStatus, errorThrown) {
@@ -165,14 +169,12 @@
         return JSON.parse(window.atob(base64));
     };
     
-    
-
 (function(open) {
     XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
         this.addEventListener("readystatechange", function() {
 			if (this.readyState == 4) 
             { 
-				console.log(this.status);
+
 			}
         }, false);
         open.call(this, method, url, async, user, pass);
@@ -305,9 +307,9 @@ function getCookie(name) {
 <!--            <form  method="POST" name="myform"> -->
         <form method="post" id="myform" action="/efetuaLoginMercado">
             <label class="sr-only"> User Name :</label>
-            <input class="form-control" placeholder="Username" type="text" name="username" id="username"/>
+            <input class="form-control" placeholder="Username" type="text" name="username" id="username" value="bourbon"/>
             <label class="sr-only">Password :</label>
-            <input class="form-control" placeholder="Password" type="password" name="password" id="password"/>
+            <input class="form-control" placeholder="Password" type="password" name="password" id="password" value="bourbon"/>
 <!--            <button type="submit" value="Login" id="submit" onclick="post();">Login</button> -->
             <input id="clickMe" type="button" value="Login" onclick="post();" />
         </form>
