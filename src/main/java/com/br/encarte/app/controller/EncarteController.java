@@ -23,7 +23,7 @@ public class EncarteController {
 	@Autowired
 	private EncarteRepository encarteRepository;
 	
-    @RequestMapping("/gerenciamentoEncartes")
+    @RequestMapping("/gerenciamentoencartes")
     public String encarte(Model model) {
         return "gerenciamentoEncartes";
     }
@@ -43,7 +43,7 @@ public class EncarteController {
         return "telaDeExcluirEncarte";
     }
 
-    @RequestMapping("/ListaEncartes")
+    @RequestMapping("/listaencartes")
     public String lista_encarte(Model model) {
         return "ListaEncartes";
     }

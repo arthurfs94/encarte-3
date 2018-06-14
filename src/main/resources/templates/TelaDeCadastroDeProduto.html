@@ -25,6 +25,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+            
+	<script>
+		$(document).ready(function(){
+		   document.querySelector("marketcredent").innerHTML = "<div>" + getCookie("name_market") + "</div>";
+		});
+	</script>
+            
+            
+    
 </head>
 <style>
 	body { 
@@ -55,7 +64,7 @@
    <div class="jumbotron">
 <h1>Tela de Cadastro de Produtos</h1>
 <br>
-    <form id="form" method="post" name="myform">
+
         <div class="input-group input-group-lg">
             <span class="input-group-addon" id="sizing-addon1">Nome do Produto</span>
             <input type="text" class="form-control" placeholder="Nome" name="name" id="name">
@@ -94,14 +103,13 @@
         </div>
         <br>
         <div class="alert alert-info">
-  			<strong>Mercado: </strong> 
-  			<main6></main6>
+  			<strong>Mercado:  </strong> 
+  			<marketcredent></marketcredent>
 		</div>
         <main6></main6>
 
         <br>
-        <button class="btn btn-lg btn-primary btn-block" onclick="create('product', 'form')">Adicionar Produto</button>
-    </form>
+        <button class="btn btn-lg btn-primary btn-block" onclick="createAndSendProduct()">Adicionar Produto</button>
 </div>
 
 

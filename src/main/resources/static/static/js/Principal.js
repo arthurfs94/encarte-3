@@ -249,6 +249,9 @@ function carregaMercado(market) {
 }
 
 function buscaEncarte() {
+
+	if(getCookie("Authorization") == null) window.location.href = '/signinmercado'; 
+
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -256,11 +259,12 @@ function buscaEncarte() {
 			var encarte = JSON.parse(this.responseText);
 			carregaEncarte(encarte);
 			// carregaProduto(encarte);
+		}else if (this.status == 403){
+			window.location.href = '/signinmercado';
 		}
 	}
-
+	
 	xhttp.open("GET", "/market/" + getCookie("id_market") + "/encarte", true);
-	// xhttp.open("GET","http://localhost:8080/encarte/product",true);
 	xhttp.send();
 }
 
@@ -732,5 +736,6 @@ function buscarItemMercado(nome, tipo){
 	    }
 	});
 }
+
 
 

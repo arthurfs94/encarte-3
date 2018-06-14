@@ -26,5 +26,8 @@ import java.util.List;
 
 
     Encarte findById(Long id);
+
+
+	List<Encarte> findEncarteByMarketId(Long id);
     
 }

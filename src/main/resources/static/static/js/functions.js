@@ -26,16 +26,23 @@ function error(x, e) {
 }
 
 function create(param, form) {
+
     json = converteFormEmJSON(form);
-    if (json != "null") {
+    console.log(json);
+    /*if (json != "null") {
         $.ajax({
             type: "POST",
-            url: "/encarte/" + param,
+            url: param,
             data: json,
-            contentType: "application/json"
+            contentType: "application/json",
+            success: function(data) {
+	      		alert("einta"); 
+	    	},
+	    	err: function(data) {
+	      		alert("ein?"); 
+	    	}
         });
-    success();
-    }
+    }*/
 }
 
 function read(param, id, form) {
@@ -300,7 +307,7 @@ function carregarBuscaItem(obj, tipo) {
 			}
         }, false);
         open.call(this, method, url, async, user, pass);
-		//this.setRequestHeader("Authorization", getCookie('Authorization'))
+		this.setRequestHeader("Authorization", getCookie('Authorization'))
     };
 })(XMLHttpRequest.prototype.open);
 
@@ -309,4 +316,39 @@ function getCookie(name) {
     function escape(s) { return s.replace(/([.*+?\^${}()|\[\]\/\\])/g, '\\$1'); };
     var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
     return match ? match[1] : null;
+}
+
+
+function createAndSendProduct(){
+	var product = "";
+	product += "{\"name\":\"" + document.getElementById("name").value + "\",";
+	product += "\"descrition\":\"" + document.getElementById("descrition").value + "\","; 
+	product += "\"value\":\"" + document.getElementById("value").value + "\","; 
+	product += "\"picture\":\"" + document.getElementById("picture").value + "\","; 
+	product += "\"serial\":\"" + document.getElementById("serial").value + "\","; 
+	product += "\"idMarket\":\"" + getCookie("id_market") + "\"}"; 
+	
+	console.log(product);
+
+
+        $.ajax({
+            type: "POST",
+            url: "/product/cadastrar" ,
+            data: product,
+            contentType: "application/json",
+            success: function(data) {
+    			success();
+    			
+    			document.getElementById("name").value = "";
+				document.getElementById("descrition").value = ""; 
+				document.getElementById("value").value = ""; 
+				document.getElementById("picture").value = ""; 
+				document.getElementById("serial").value = "";
+    			
+      			return; 
+    		}
+        });
+
+
+
 }

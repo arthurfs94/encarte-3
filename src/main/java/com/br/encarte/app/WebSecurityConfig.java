@@ -22,6 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf().disable().authorizeRequests()
+			.antMatchers(HttpMethod.GET,"/productregistration").permitAll()
 			.antMatchers(HttpMethod.GET,"/Principal").permitAll()
 			.antMatchers(HttpMethod.GET,"/product/").permitAll()
 			.antMatchers(HttpMethod.GET,"/product/**").permitAll()
@@ -34,10 +35,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.GET,"/static/**").permitAll()
 			.antMatchers(HttpMethod.GET,"/templates/**").permitAll()
 			.antMatchers(HttpMethod.GET,"/favicon.ico").permitAll()
-//			.antMatchers(HttpMethod.GET,"/gerenciamentoProduto").permitAll()
+			.antMatchers(HttpMethod.GET,"/paginamercado").permitAll()
+			.antMatchers(HttpMethod.GET,"/paginamercado/**").permitAll()
+			.antMatchers(HttpMethod.GET,"/mercado").permitAll()
+			.antMatchers(HttpMethod.GET,"/gerenciamentoproduto").permitAll()
+			.antMatchers(HttpMethod.GET,"/gerenciamentoencartes").permitAll()
+			.antMatchers(HttpMethod.GET,"/listaprodutos").permitAll()
+			.antMatchers(HttpMethod.GET,"/listaencartes").permitAll()
+			.antMatchers(HttpMethod.GET,"/productregistration").permitAll()
 			.antMatchers(HttpMethod.POST, "/login").permitAll()
-			.antMatchers(HttpMethod.POST, "/SignInMercado").permitAll()
-			.antMatchers(HttpMethod.GET, "/SignInMercado").permitAll()
+			.antMatchers(HttpMethod.POST, "/signinmercado").permitAll()
+			.antMatchers(HttpMethod.GET, "/signinmercado").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			
@@ -56,7 +64,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder);
 	}
-	
-//	@Override
 	
 }

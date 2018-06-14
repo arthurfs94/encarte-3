@@ -139,9 +139,12 @@
 				    contentType: 'application/json',
 				    success: function(data){
 
-						document.cookie = "id_market=" +  data[0].id;				    	
+						document.cookie = "id_market=" +  data[0].id;
+						document.cookie = "name_market=" +  data[0].name;
+						
+						window.location.href = '/mercado';				    	
 
-					    $.ajax({
+					    /*$.ajax({
 						    url: '/Mercado',
 						    type: 'GET',
 						    contentType: 'application/json',
@@ -152,8 +155,8 @@
 						        document.close();
 				            
 					        }
-					    });
-							        }
+					    }); */
+			        }
 			    });
 		        
 		   },
@@ -169,7 +172,7 @@
         return JSON.parse(window.atob(base64));
     };
     
-(function(open) {
+/*(function(open) {
     XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
         this.addEventListener("readystatechange", function() {
 			if (this.readyState == 4) 
@@ -182,7 +185,7 @@
     };
 })(XMLHttpRequest.prototype.open);
 
-
+*/
 function getCookie(name) {
     function escape(s) { return s.replace(/([.*+?\^${}()|\[\]\/\\])/g, '\\$1'); };
     var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));

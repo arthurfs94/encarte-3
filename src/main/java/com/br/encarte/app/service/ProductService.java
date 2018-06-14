@@ -1,6 +1,8 @@
 package com.br.encarte.app.service;
 
+import com.br.encarte.app.entity.Market;
 import com.br.encarte.app.entity.Product;
+import com.br.encarte.app.entity.ProductRequest;
 import com.br.encarte.app.repository.ProductRepository;
 import com.br.encarte.app.service.inter.ProductServiceAO;
 
@@ -47,4 +49,20 @@ public class ProductService implements ProductServiceAO {
 	public Product findById(Long id) {
         return this.productRepository.findOne(id);
     }
+
+	public Product convert(ProductRequest product) {
+		Product productNovo = new Product();
+		productNovo.setDescrition(product.getDescrition());
+		productNovo.setName(product.getName());
+		productNovo.setPicture(product.getPicture());
+		productNovo.setSerial(product.getSerial());
+		productNovo.setType(product.getType());
+		productNovo.setValue(product.getType());
+		
+		Market market = new Market();
+		market.setId(product.getIdMarket());
+		productNovo.setMarket(market);
+		
+		return productNovo;
+	}
 }

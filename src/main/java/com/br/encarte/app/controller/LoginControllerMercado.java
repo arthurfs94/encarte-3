@@ -20,12 +20,12 @@ public class LoginControllerMercado {
 		this.marketRepository = marketRepository;
 	}
 
-	@RequestMapping(value = "/Mercado", method = RequestMethod.GET)
+	@RequestMapping(value = "/mercado", method = RequestMethod.GET)
 	public String index() {
 		return "inicialMercado";
 	}
 
-	@RequestMapping(value = "/SignInMercado", method = RequestMethod.GET)
+	@RequestMapping(value = "/signinmercado", method = RequestMethod.GET)
 	public String login() {
 		return "SignInMercado";
 	}

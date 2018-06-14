@@ -8,15 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.br.encarte.app.entity.Encarte;
 import com.br.encarte.app.entity.Product;
+import com.br.encarte.app.entity.ProductRequest;
 import com.br.encarte.app.entity.ResultadoPesquisa;
 import com.br.encarte.app.repository.EncarteRepository;
 import com.br.encarte.app.repository.ProductRepository;
+import com.br.encarte.app.service.ProductService;
 import com.br.encarte.app.specification.ProductSpecification;
 
 import jersey.repackaged.com.google.common.collect.Lists;
@@ -29,6 +33,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductRepository prodRepo;
+	
+	@Autowired
+	private ProductService productService; 
 
 	@GetMapping(path = "pesquisaEncarte")
 	@ResponseBody
@@ -66,12 +73,12 @@ public class ProductController {
 	}
 
 
-	@RequestMapping("/gerenciamentoProduto")
+	@RequestMapping("/gerenciamentoproduto")
     public String produto(Model model) {
         return "gerenciamentoProduto";
     }
 
-    @RequestMapping("/TelaDeCadastroDeProduto")
+    @RequestMapping("/productregistration")
     public String cadastro_produto(Model model) {
         return "TelaDeCadastroDeProduto";
     }
@@ -88,7 +95,7 @@ public class ProductController {
         return "telaDeExcluirProduto";
     }
 
-    @RequestMapping("/ListaProdutos")
+    @RequestMapping("/listaprodutos")
     public String lista_produto(Model model) {
         return "ListaProdutos";
     }
@@ -126,6 +133,12 @@ public class ProductController {
     	where = where.and(Specifications.where(ProductSpecification.marketId(idMarket)));
     	
     	return prodRepo.findAll(where);
+    }
+    
+    @PostMapping("/product/cadastrar")
+    @ResponseBody
+    public Product saveProduct(@RequestBody ProductRequest product) {
+    	return prodRepo.save( productService.convert(product));
     }
     
 }
