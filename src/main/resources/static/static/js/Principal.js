@@ -113,7 +113,8 @@ function buscaProduto() {
 	}
 
 	// xhttp.open("GET","http://localhost:8080/encarte/client",true);
-	xhttp.open("GET", "http://localhost:8080/encarte/product", true);
+	//xhttp.open("GET", "http://localhost:8080/encarte/product", true);
+	xhttp.open("GET", "/encarte/product", true);
 	xhttp.send();
 }
 
