@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="../static/js/Principal.js"></script>
-    
+     <script src="../static/js/functions.js"></script>
     <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
@@ -120,7 +120,7 @@
 <!-- </form> -->
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
-      
+      <li><a href="paginamercado">QR Code</a></li>
       <li><a href="/signinmercado"><span class="glyphicon glyphicon-log-out"></span> Login</a></li>
 <!--       <li class="active"><a href="/">Adm</a></li> -->
     </ul>
@@ -216,12 +216,13 @@
 <!--   <div class="row"> -->
 <!--      <div class="col-sm-6">  -->
      <h1>Encartes Atuais!</h1> 
+     <main5><div th:remove="tag" th:utext="${listaEncartes}"></div></main5>
 <!-- <!--     <table class="table table-bordered"> -->
 <!--       <thead> -->
 <!--       	<tr> -->
 <!--   		<td> -->
 
-	<! -- <div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators 
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -231,7 +232,7 @@
     </ol>
         Wrapper for slides
    <div class='carousel-inner' id='principal-encarte'>
--     <PrincipalEncarte></PrincipalEncarte> -->
+-     <PrincipalEncarte></PrincipalEncarte> 
     </div>
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -240,10 +241,9 @@
     <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
       <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
-    </a>
-  </div> 
-  -->     
-<main5><div th:remove="tag" th:utext="${listaEncartes}"></div></main5>
+    </a>-->
+<!--   </div>       -->
+
 
 <!--      </tr> -->
 <!--       </thead>      -->
@@ -258,7 +258,7 @@
 <!--       	<tr> -->
 <!--   		<td> -->
       
-      <main5></main5>
+      
 <!--      </tr> -->
 <!--       </thead>      -->
 <!--        </div>    -->
