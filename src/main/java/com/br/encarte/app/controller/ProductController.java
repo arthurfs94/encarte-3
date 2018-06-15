@@ -87,6 +87,11 @@ public class ProductController {
     public String alterar_produto(Model model) {
         return "TelaDeAlterarProduto";
     }
+    
+    @RequestMapping("/vincularProdutos")
+    public String vincular(Model model) {
+        return "vincularProdutos";
+    }
 
     @RequestMapping("/telaDeExcluirProduto")
     public String excluir_produto(Model model) {
