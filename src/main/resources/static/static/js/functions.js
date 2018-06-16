@@ -352,3 +352,34 @@ function createAndSendProduct(){
 
 
 }
+
+function createAndSendEncarte(){
+	var encarte = "";
+	encarte += "{\"name\":\"" + document.getElementById("name").value + "\",";
+	encarte += "\"descrition\":\"" + document.getElementById("descrition").value + "\","; 
+	encarte += "\"type\":\"" + document.getElementById("type").value + "\","; 
+	encarte += "\"picture\":\"" + document.getElementById("picture").value + "\","; 
+	encarte += "\"data\":\"" + document.getElementById("data").value + "\","; 
+	encarte += "\"idMarket\":\"" + getCookie("id_market") + "\"}"; 
+	
+	console.log(encarte);
+
+
+        $.ajax({
+            type: "POST",
+            url: "/encarte/cadastrar" ,
+            data: encarte,
+            contentType: "application/json",
+            success: function(data) {
+    			success();
+    			
+    			document.getElementById("name").value = "";
+				document.getElementById("descrition").value = ""; 
+				document.getElementById("type").value = ""; 
+				document.getElementById("picture").value = ""; 
+				document.getElementById("data").value = "";
+    			
+      			return; 
+    		}
+        });
+

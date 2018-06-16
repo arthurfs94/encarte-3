@@ -1,6 +1,10 @@
 package com.br.encarte.app.service;
 
 import com.br.encarte.app.entity.Encarte;
+import com.br.encarte.app.entity.EncarteRequest;
+import com.br.encarte.app.entity.Market;
+import com.br.encarte.app.entity.Product;
+import com.br.encarte.app.entity.ProductRequest;
 import com.br.encarte.app.repository.EncarteRepository;
 import com.br.encarte.app.service.inter.EncarteServiceAO;
 import com.br.encarte.app.specification.EncarteSpecification;
@@ -59,4 +63,20 @@ public class EncarteService implements EncarteServiceAO {
     	Specifications<Encarte> where = Specifications.where(EncarteSpecification.marketId(id));
     	return encarteRepository.findAll(where);
     }
+    
+    public Encarte convert(EncarteRequest encarte) {
+		Encarte encarteNovo = new Encarte();
+		encarteNovo.setDescription(encarte.getDescription());
+		encarteNovo.setName(encarte.getName());
+		encarteNovo.setPicture(encarte.getPicture());
+		encarteNovo.setStatus(encarte.getStatus());
+		encarteNovo.setType(encarte.getType());
+		encarteNovo.setData(encarte.getData());
+		
+		Market market = new Market();
+		market.setId(encarte.getIdMarket());
+		encarteNovo.setMarket(market);
+		
+		return encarteNovo;
+	}
 }

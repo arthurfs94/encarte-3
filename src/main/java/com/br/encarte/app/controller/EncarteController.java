@@ -8,18 +8,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.br.encarte.app.entity.Encarte;
+import com.br.encarte.app.entity.EncarteRequest;
+import com.br.encarte.app.entity.Product;
+import com.br.encarte.app.entity.ProductRequest;
 import com.br.encarte.app.repository.EncarteRepository;
+import com.br.encarte.app.repository.ProductRepository;
+import com.br.encarte.app.service.EncarteService;
+import com.br.encarte.app.service.ProductService;
 import com.br.encarte.app.specification.EncarteSpecification;
 
 import jersey.repackaged.com.google.common.collect.Lists;
 
 @Controller
 public class EncarteController {
-
+	
+	@Autowired
+	private EncarteService encarteService; 
+	
 	@Autowired
 	private EncarteRepository encarteRepository;
 	
@@ -27,8 +38,8 @@ public class EncarteController {
     public String encarte(Model model) {
         return "gerenciamentoEncartes";
     }
-
-    @RequestMapping("/TelaDeCadastroDeEncartes")
+    
+    @RequestMapping("/encarteregistration")
     public String cadastro_encarte(Model model) {
         return "TelaDeCadastroDeEncartes";
     }
@@ -88,5 +99,10 @@ public class EncarteController {
     	
     	return encarteRepository.findAll(where);
     }
-
+    
+    @PostMapping("/encarte/cadastrar")
+    @ResponseBody
+    public Encarte saveEncarte(@RequestBody EncarteRequest encarte) {
+    	return encarteRepository.save( encarteService.convert(encarte));
+    }
 }
