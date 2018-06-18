@@ -70,12 +70,13 @@ public class ProductService implements ProductServiceAO {
 		return productNovo;
 	}
 
-	public Object montarListaProdutosEncarte(Long idEncarte) {
+	public Object montarListaProdutosEncarte(Long idMarket, Long idEncarte) {
 			
-		Specifications<Product> where = Specifications.where(ProductSpecification.encarteId(idEncarte));
-    	List<Product> productsEncarte = productRepository.findAll(where);
+		Specifications<Product> whereProductsEncarte = Specifications.where(ProductSpecification.encarteId(idEncarte));
+    	List<Product> productsEncarte = productRepository.findAll(whereProductsEncarte);
     	
-    	List<Product> products = ImmutableList.copyOf(productRepository.findAll() );
+    	Specifications<Product> where = Specifications.where(ProductSpecification.marketId(idMarket));
+    	List<Product> products = productRepository.findAll(where) ;
     	
 		
 		String  str = "";

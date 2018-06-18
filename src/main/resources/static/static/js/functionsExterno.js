@@ -299,26 +299,6 @@ function carregarBuscaItem(obj, tipo) {
 
 }
 
-(function(open) {
-    XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
-        this.addEventListener("readystatechange", function() {
-			if (this.readyState == 4) 
-            { 
-			}
-        }, false);
-        open.call(this, method, url, async, user, pass);
-		this.setRequestHeader("Authorization", getCookie('Authorization'))
-    };
-})(XMLHttpRequest.prototype.open);
-
-
-function getCookie(name) {
-    function escape(s) { return s.replace(/([.*+?\^${}()|\[\]\/\\])/g, '\\$1'); };
-    var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
-    return match ? match[1] : null;
-}
-
-
 function createAndSendProduct(){
 	var product = "";
 	product += "{\"name\":\"" + document.getElementById("name").value + "\",";
@@ -394,14 +374,6 @@ function createAndSendEncarte(){
 }
 
 
-function logout(){
-
-	document.cookie = "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-	document.cookie = "id_market=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-	window.location.href = '/signinmercado';
-
-}
-
 
 function carregarBuscaEncarteEdit(obj) {
     
@@ -460,7 +432,7 @@ function carregarBuscaEncarteEdit(obj) {
 
 function carregarProdutosEncarte(idEncarte){
 	document.cookie= "id_encarte=" + idEncarte;
-    window.location.href = '/listaproductsencarte/market/' + getCookie("id_market") + '/encarte/' + idEncarte;
+    window.location.href = '/listaproductsencarte/' + idEncarte;
 }
 
 function salvarProdutos(){

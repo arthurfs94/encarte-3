@@ -97,10 +97,14 @@ public class ProductController {
         return "vincularProdutos";
     }
     
-    @RequestMapping("/listaproductsencarte/{idEncarte}")
-    public String listarProdutosEncarte(Model model, @PathVariable Long idEncarte) {
+    @RequestMapping("/listaproductsencarte/market/{idMarket}/encarte/{idEncarte}")
+    public String listarProdutosEncarte(
+    		Model model, 
+    		@PathVariable Long idMarket,
+    		@PathVariable Long idEncarte) {
+    	
     	model.addAttribute("encarte", encarteService.findById(idEncarte).getName());
-    	model.addAttribute("listaProductsEncartes", productService.montarListaProdutosEncarte(idEncarte));
+    	model.addAttribute("listaProductsEncartes", productService.montarListaProdutosEncarte(idMarket, idEncarte));
     	return "ListaProdutosEncarte";
     }
 
