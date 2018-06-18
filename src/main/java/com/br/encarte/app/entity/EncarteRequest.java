@@ -1,12 +1,7 @@
 package com.br.encarte.app.entity;
 
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.Set;
 
 /**
  * Created by arthur on 20/05/17.
@@ -23,12 +18,13 @@ public class EncarteRequest implements Serializable {
     private String status;
     private String type;
     private Long idMarket;
+    private Set<ProductRequest> products;
     
     public EncarteRequest() {
 	}
 
 	public EncarteRequest(Long id, String name, String description, String data, String picture, String status,
-			String type, long idMarket) {
+			String type, long idMarket, Set<ProductRequest> products) {
 		super();
 		this.id = id;
         this.name = name;
@@ -38,6 +34,7 @@ public class EncarteRequest implements Serializable {
         this.status = status;
         this.type = type;
         this.idMarket = idMarket;
+        this.products = products;
 	}
 
 	public Long getId() {
@@ -107,6 +104,13 @@ public class EncarteRequest implements Serializable {
 	public void setIdMarket(Long idMarket) {
 		this.idMarket = idMarket;
 	}
-	
+
+	public Set<ProductRequest> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<ProductRequest> products) {
+		this.products = products;
+	}
 
 }

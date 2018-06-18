@@ -15,12 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.br.encarte.app.entity.Encarte;
 import com.br.encarte.app.entity.EncarteRequest;
-import com.br.encarte.app.entity.Product;
-import com.br.encarte.app.entity.ProductRequest;
 import com.br.encarte.app.repository.EncarteRepository;
-import com.br.encarte.app.repository.ProductRepository;
 import com.br.encarte.app.service.EncarteService;
-import com.br.encarte.app.service.ProductService;
 import com.br.encarte.app.specification.EncarteSpecification;
 
 import jersey.repackaged.com.google.common.collect.Lists;
@@ -57,6 +53,11 @@ public class EncarteController {
     @RequestMapping("/listaencartes")
     public String lista_encarte(Model model) {
         return "ListaEncartes";
+    }
+    
+    @RequestMapping("/listaencartesproducts")
+    public String encarteProducts(Model model) {
+    	return "ListaEncartesProducts";
     }
     
     @RequestMapping("/ListaEncartesUsuarios")
@@ -105,4 +106,13 @@ public class EncarteController {
     public Encarte saveEncarte(@RequestBody EncarteRequest encarte) {
     	return encarteRepository.save( encarteService.convert(encarte));
     }
+    
+    @PostMapping("/productsencarte")
+    @ResponseBody
+    public Encarte saveProductsEncarte(@RequestBody EncarteRequest encarteRequest) {
+    
+    	encarteService.save(encarteRequest);
+    	return null;
+    }
+    
 }

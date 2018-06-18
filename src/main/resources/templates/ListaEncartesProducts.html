@@ -34,11 +34,10 @@
       display: none; 
     }
   }
-     body { 
-   background-image: url('http://2.bp.blogspot.com/_lS-sZAoamTA/TQurXJpI6wI/AAAAAAAAAyY/rMjAod8Xam8/s1600/re.jpg'); 
-   } 
-   
-   
+    body { 
+/*    background-image: url('https://jill-kane.com/wp-content/uploads/2017/12/AdobeStock_617982.jpeg');  */
+background-image: url('http://2.bp.blogspot.com/_lS-sZAoamTA/TQurXJpI6wI/AAAAAAAAAyY/rMjAod8Xam8/s1600/re.jpg'); 
+   }
   </style>
 </head>
 <body>
@@ -54,49 +53,44 @@
        <a class="navbar-brand" href="/mercado">Encarte Digital</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav">
       </ul>
       <ul class="nav navbar-nav navbar-right">
+
         <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
   </div>
 </nav>
-
-<div class="container">
-    <h2><li>Gerenciamento dos Encartes</li></h2>
-    <p></p>      
-          
-    <table class="table">
-      <thead>
-        <tr>
-         <!-- <th>Adicionar</th>
-          <th>Alterar</th>
-          <th>Remover</th>
-          <th>Listar</th> -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-          	<a class="btn btn-lg btn-primary btn-block" href="encarteregistration">Cadastrar</a>
-          </td>
-          <td><a class="btn btn-lg btn-primary btn-block" href="TelaDeAlterarEncartes">Alterar</a></td>
-          <td><a class="btn btn-lg btn-primary btn-block" href="telaDeExcluirEncarte">Excluir</a></td>
-          <td>
-          	<a class="btn btn-lg btn-primary btn-block" id="gerProd" href="listaencartes">Listar</a>
-          </td>
-          <td>
-          	<a class="btn btn-lg btn-primary btn-block" id="gerProd" href="listaencartesproducts">Adicionar Produtos</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
- </div>   
-
-  <div>
-  
+<br>
+<div class="container text-center">
+<div class="jumbotron">      
+  <h1>Encartes Cadastrados</h1><br>
+  <div class="row">
+    <div class="col-sm-12">
+      
+      
+      <!-- Campo de pesquisa -->
+      <input type="text" class="form-control" id="myInput" onkeyup="buscarEncartesEdit(this.value)" placeholder="Pesquisar Encarte">
+      
+      <!-- Finaliza campo de pesquisa -->
+      <br>
+      <main5></main5>
+    </div>
+    <!--<div class="col-sm-2">
+      <div class="well">
+       <p>Some text..</p>
+      </div>
+      <div class="well">
+       <p>Some text..</p>
+      </div>
+    </div>-->
   </div>
+</div><br>
+
+<footer class="container-fluid text-center">
+  <p>O encarte que cabe na palma da sua mão!</p>
+</footer>
 
 </body>
 </html>

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.br.encarte.app.entity.Market;
 import com.br.encarte.app.repository.MarketRepository;
-import com.br.encarte.app.service.EncarteService;
 import com.br.encarte.app.service.MarketService;
 import com.br.encarte.app.specification.MarketSpecification;
 
@@ -27,9 +26,6 @@ public class MarketController {
 	@Autowired
 	private MarketService marketService;
 	
-	@Autowired
-	private EncarteService encarteService;
-
     @RequestMapping("/gerenciamentoMercados")
     public String mercado(Model model) {
         return "gerenciamentoMercados";

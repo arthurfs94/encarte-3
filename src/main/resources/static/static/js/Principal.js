@@ -738,5 +738,18 @@ function buscarItemMercado(nome, tipo){
 	});
 }
 
+function buscarEncartesEdit(nome){
+	    	
+	$.ajax({
+	    url: "/market/" + getCookie("id_market") + "/encarte/" + nome ,
+	    type: 'GET',
+	    contentType: 'application/json',
+	    success: function(data){
+			carregarBuscaEncarteEdit(data);    	
+	    
+	    }
+	});
+}
+
 
 

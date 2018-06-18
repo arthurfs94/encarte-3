@@ -1,17 +1,20 @@
 package com.br.encarte.app.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Created by arthur on 20/05/17.
@@ -29,9 +32,9 @@ public class Product implements Serializable {
     @JoinColumn(name = "idMarket")
     private Market market;
     
-    @ManyToOne(targetEntity = Encarte.class)
-    @JsonBackReference
-    private Encarte encarte;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "product")
+    @JsonIgnore
+	private Set<Encarte> encarte;
     
     @Column(name = "NAME", length = 100)
     private String name;
@@ -120,14 +123,6 @@ public class Product implements Serializable {
 		this.market = market;
 	}
 
-	public Encarte getEncarte() {
-		return encarte;
-	}
-
-	public void setEncarte(Encarte encarte) {
-		this.encarte = encarte;
-	}
-
 	public String getSerial() {
 		return serial;
 	}
@@ -138,6 +133,14 @@ public class Product implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	public Set<Encarte> getEncarte() {
+		return encarte;
+	}
+
+	public void setEncarte(Set<Encarte> encarte) {
+		this.encarte = encarte;
 	}
 
 	@Override

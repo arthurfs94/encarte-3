@@ -326,6 +326,7 @@ function createAndSendProduct(){
 	product += "\"value\":\"" + document.getElementById("value").value + "\","; 
 	product += "\"picture\":\"" + document.getElementById("picture").value + "\","; 
 	product += "\"serial\":\"" + document.getElementById("serial").value + "\","; 
+	product += "\"type\":\"" + $('input[name=type]:checked').val() + "\","; 
 	product += "\"idMarket\":\"" + getCookie("id_market") + "\"}"; 
 	
 	console.log(product);
@@ -356,10 +357,11 @@ function createAndSendProduct(){
 function createAndSendEncarte(){
 	var encarte = "";
 	encarte += "{\"name\":\"" + document.getElementById("name").value + "\",";
-	encarte += "\"descrition\":\"" + document.getElementById("descrition").value + "\","; 
-	encarte += "\"type\":\"" + document.getElementById("type").value + "\","; 
+	encarte += "\"description\":\"" + document.getElementById("description").value + "\","; 
+	encarte += "\"data\":\"" + document.getElementById("data").value + "\",";
+	encarte += "\"type\":\"" + $('input[name=type]:checked').val() + "\","; 
 	encarte += "\"picture\":\"" + document.getElementById("picture").value + "\","; 
-	encarte += "\"data\":\"" + document.getElementById("data").value + "\","; 
+	encarte += "\"status\":\"" + $('input[name=status]:checked').val() + "\","; 
 	encarte += "\"idMarket\":\"" + getCookie("id_market") + "\"}"; 
 	
 	console.log(encarte);
@@ -374,12 +376,134 @@ function createAndSendEncarte(){
     			success();
     			
     			document.getElementById("name").value = "";
-				document.getElementById("descrition").value = ""; 
-				document.getElementById("type").value = ""; 
-				document.getElementById("picture").value = ""; 
+				document.getElementById("description").value = ""; 
 				document.getElementById("data").value = "";
+				document.getElementById("picture").value = "";
+				
+				$("input:radio[name='status']").each(function(i) {
+				       this.checked = false;
+				}); 
+				
+				$("input:radio[name='type']").each(function(i) {
+				       this.checked = false;
+				}); 
     			
       			return; 
     		}
         });
+}
+
+
+function logout(){
+
+	document.cookie = "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+	document.cookie = "id_market=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+	window.location.href = '/signinmercado';
+
+}
+
+
+function carregarBuscaEncarteEdit(obj) {
+    
+
+	var str = "";
+	for (var i = 0; i < obj.length; i++) {
+
+		if (i % 3 == 0) {
+			str += "<div class='row'>";
+		}
+		str += "<div class='col-sm-4' onclick='carregarProdutosEncarte(" + obj[i].id +")' >";
+
+		str += "<dl>";
+		str += "</dd>";
+		
+		str += "<img class='card-img-top' src='" + obj[i].picture
+				+ "' alt='Card image' style='width:60%'>";
+
+		str += "<dl>";
+		str += "</dd>";
+		
+		str += "<strong>Nome do Encarte: </strong>" + obj[i].name;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Status: </strong>" + obj[i].status;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Descrição do Encarte: </strong>"
+				+ obj[i].description;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Data de Validade: </strong> " + obj[i].data;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Id do Encarte: </strong> " + obj[i].id;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Categoria: </strong> " + obj[i].type;
+		
+		str += "<dl>";
+		str += "</dd>";
+
+		str += "<dl>";
+		str += "</dl>";
+
+		str += "</div>";
+
+		if (i % 3 == 2) {
+			str += "</div>";
+		}
+	}
+
+	document.querySelector("main5").innerHTML = str;
+
+}
+
+function carregarProdutosEncarte(idEncarte){
+	document.cookie= "id_encarte=" + idEncarte;
+    window.location.href = '/listaproductsencarte/' + idEncarte;
+}
+
+function salvarProdutos(){
+	
+	var str='{"id":"' + getCookie("id_encarte") + '", "products":[';
+	
+	$("input:checkbox[name=productBound]:checked").each(function () {
+            str += '{"id":"' + $(this).val() + '"},';
+    });
+    
+    str = str.substring(0, str.length-1);
+	
+	str += ']}';
+	
+
+	$.ajax({
+        type: "POST",
+        url: "/productsencarte" ,
+        data: str,
+        contentType: "application/json",
+        success: function(data) {
+			success();
+			
+			/*document.getElementById("name").value = "";
+			document.getElementById("description").value = ""; 
+			document.getElementById("data").value = "";
+			document.getElementById("picture").value = "";
+			
+			$("input:radio[name='status']").each(function(i) {
+			       this.checked = false;
+			}); 
+			
+			$("input:radio[name='type']").each(function(i) {
+			       this.checked = false;
+			}); 
+			
+  			return; */ 
+		}
+    });	
+	
+	
+	console.log(str);
+	
+}
+
 

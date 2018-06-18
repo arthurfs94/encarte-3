@@ -20,6 +20,7 @@ import com.br.encarte.app.entity.ProductRequest;
 import com.br.encarte.app.entity.ResultadoPesquisa;
 import com.br.encarte.app.repository.EncarteRepository;
 import com.br.encarte.app.repository.ProductRepository;
+import com.br.encarte.app.service.EncarteService;
 import com.br.encarte.app.service.ProductService;
 import com.br.encarte.app.specification.ProductSpecification;
 
@@ -36,6 +37,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService; 
+	
+	@Autowired
+	private EncarteService encarteService; 
 
 	@GetMapping(path = "pesquisaEncarte")
 	@ResponseBody
@@ -92,6 +96,13 @@ public class ProductController {
     public String vincular(Model model) {
         return "vincularProdutos";
     }
+    
+    @RequestMapping("/listaproductsencarte/{idEncarte}")
+    public String listarProdutosEncarte(Model model, @PathVariable Long idEncarte) {
+    	model.addAttribute("encarte", encarteService.findById(idEncarte).getName());
+    	model.addAttribute("listaProductsEncartes", productService.montarListaProdutosEncarte(idEncarte));
+    	return "ListaProdutosEncarte";
+    }
 
     @RequestMapping("/telaDeExcluirProduto")
     public String excluir_produto(Model model) {
@@ -146,4 +157,14 @@ public class ProductController {
     	return prodRepo.save( productService.convert(product));
     }
     
+    @RequestMapping("/paginamercado/{idMarket}/encarte/{idEncarte}")
+    public String paginaMercadoEncarte(
+    		Model model, 
+    		@PathVariable Long idMarket,
+    		@PathVariable Long idEncarte) {
+    	
+    	model.addAttribute("encarte", encarteService.findById(idEncarte).getName());
+    	model.addAttribute("listaEncartes", productService.montarListaEncarteProduto(idMarket, idEncarte));
+    	return "PaginaMercadoProduto";
+    }
 }

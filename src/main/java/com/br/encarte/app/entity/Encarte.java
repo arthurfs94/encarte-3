@@ -3,7 +3,6 @@ package com.br.encarte.app.entity;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,13 +28,13 @@ public class Encarte implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne 
+    @ManyToOne
     @JoinColumn(name = "idMarket")
     @JsonManagedReference
     private Market market;
     
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name="product_encarte", joinColumns=@JoinColumn(name="idProduct"), inverseJoinColumns=@JoinColumn(name="idEncarte"))		
+    @ManyToMany
+    @JoinTable(name="product_encarte", joinColumns=@JoinColumn(name="idEncarte"), inverseJoinColumns=@JoinColumn(name="idProduct"))		
     @JsonManagedReference
     private Collection<Product> product;
     

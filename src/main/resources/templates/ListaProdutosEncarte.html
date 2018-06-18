@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Encarte Digital</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- </script> -->
+  
+  <script src="../static/js/Principal.js"></script> 
+  <script src="../static/js/functions.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+    
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+    }
+  }
+   body { 
+   background-image: url('http://2.bp.blogspot.com/_lS-sZAoamTA/TQurXJpI6wI/AAAAAAAAAyY/rMjAod8Xam8/s1600/re.jpg'); 
+   
+   } 
+   
+  
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	<a href="/mercado" class="navbar-brand">Encarte Digital</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar3">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbar3">
+           <!--<ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Link <span class="sr-only">Home</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="//codeply.com">Codeply</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+        </ul> -->
+       </div>   
+       <a href="logout" class="glyphicon glyphicon-log-out"> Logout</a>
+      
+</nav> 
+<br>
+  
+  
+	<div class="container text-center"> 
+		<div class= "container">  
+			<div class="jumbotron">
+				<h1>Encarte: <div th:remove="tag" th:utext="${encarte}"></div></h1><br>
+				<main5><div th:remove="tag" th:utext="${listaProductsEncartes}"></div></main5>
+				<a class="btn btn-lg btn-primary btn-block" onclick="salvarProdutos()">Salvar</a>   
+			</div>
+		</div>
+		<br>
+
+		<footer class="container-fluid text-center">
+  			<p>O encarte que cabe na palma da sua mão!</p>
+		</footer>
+	</div>
+</body>
+</html>

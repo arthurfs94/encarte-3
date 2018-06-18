@@ -7,6 +7,7 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
+import com.br.encarte.app.entity.Encarte;
 import com.br.encarte.app.entity.Market;
 import com.br.encarte.app.entity.Product;
 
@@ -31,10 +32,19 @@ public class ProductSpecification implements Specification<Product>{
 	    };
 	}
 			
+	public static Specification<Product> encarteId(Long idEncarte) {
+		return new Specification<Product>() {
+			public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Join<Product, Encarte> prodMarket = root.join("encarte");
+				return cb.equal(prodMarket.get("id"), idEncarte);
+			}
+		};
+	}
 	
 	@Override
 	public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 		return null;
 	}
+
 	
 }

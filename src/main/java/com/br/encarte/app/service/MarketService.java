@@ -61,7 +61,7 @@ public class MarketService implements MarketServiceAO {
 
 	public Object montarListaEncarte(Long idMercado) {
 		
-		Specifications<Encarte> where = Specifications.where(EncarteSpecification.marketId(idMercado));;
+		Specifications<Encarte> where = Specifications.where(EncarteSpecification.marketId(idMercado));
     	List<Encarte> encartes = encarteRepository.findAll(where);
 		
 		String  str = "";
@@ -71,7 +71,7 @@ public class MarketService implements MarketServiceAO {
 			if (i % 3 == 0) {
 				str += "<div class='row'>";
 			}
-			str += "<div class='col-sm-4'>";
+			str += "<div class='col-sm-4' onclick='window.location=\"" + idMercado + "/encarte/" + encartes.get(i).getId()  +  "\"')>";
 
 			str += "<dl>";
 			str += "</dd>";
