@@ -9,6 +9,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="/static/js/Principal.js"></script>
 	<script src="/static/js/functions.js"></script>
+	<script>
+function goBack() {
+    window.history.back();
+}
+</script>
     <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
@@ -109,7 +114,7 @@
       
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
-      <li><a href="paginamercado">QR Code</a></li>
+<!--       <li><a href="paginamercado">QR Code</a></li> -->
       <li><a href="/signinmercado"><span class="glyphicon glyphicon-log-out"></span> Login</a></li>
     </ul>
   </div>
@@ -126,6 +131,9 @@
 <!--      <div class="col-sm-6">  -->
      <h1>Produtos de <div th:remove="tag" th:utext="${encarte}"></div></h1> 
      <main5><div th:remove="tag" th:utext="${listaEncartes}"></div></main5>
+<!--            <button onclick="goBack()">Go Back</button> -->
+                   <button class="btn btn-lg btn-primary btn-block" onclick="goBack()">Retornar</button>
+           
 <!-- <!--     <table class="table table-bordered"> -->
 <!--       <thead> -->
 <!--       	<tr> -->
