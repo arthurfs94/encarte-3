@@ -41,7 +41,8 @@
    body { 
    background-image: url('http://2.bp.blogspot.com/_lS-sZAoamTA/TQurXJpI6wI/AAAAAAAAAyY/rMjAod8Xam8/s1600/re.jpg'); 
    
-   } 
+   }
+
    
   
   </style>
@@ -66,7 +67,7 @@
             </li>
         </ul> -->
        </div>   
-       <a href="logout" class="glyphicon glyphicon-log-out"> Logout</a>
+<!--        <a href="logout" class="glyphicon glyphicon-log-out"> Logout</a> -->
       
 </nav> 
 <br>
@@ -77,6 +78,7 @@
 			<div class="jumbotron">
 				<h1>Encarte: <div th:remove="tag" th:utext="${encarte}"></div></h1><br>
 				<main5><div th:remove="tag" th:utext="${listaProductsEncartes}"></div></main5>
+				<br>
 				<a class="btn btn-lg btn-primary btn-block" onclick="salvarProdutos()">Salvar</a>   
 			</div>
 		</div>
