@@ -155,6 +155,23 @@ public class ProductController {
     	return prodRepo.findAll(where);
     }
     
+    @GetMapping("/paginamercado/{idMarket}/productname/{prodName}")
+    @ResponseBody
+    public List<Product> findByMarketProductName(@PathVariable Long idMarket, @PathVariable String prodName) {
+    	Specifications<Product> where = null;
+    	where = Specifications.where(ProductSpecification.name(prodName));
+    	where = where.and(Specifications.where(ProductSpecification.marketId(idMarket)));
+    	
+    	return prodRepo.findAll(where);
+    }
+    
+    @GetMapping("/paginamercado/{idMarket}/productname/")
+    @ResponseBody
+    public List<Product> findAllByMarketProductName(@PathVariable Long idMarket) {
+    	Specifications<Product> where = Specifications.where(ProductSpecification.marketId(idMarket));
+    	return prodRepo.findAll(where);
+    }
+    
     @PostMapping("/product/cadastrar")
     @ResponseBody
     public Product saveProduct(@RequestBody ProductRequest product) {

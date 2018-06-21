@@ -69,7 +69,7 @@ function pesquisaPrincipal() {
 		
 	$.ajax({
         type: "GET",
-        url: "/" + tipoBusca + "/"+ param,
+        url: window.location.href + "/" + tipoBusca + "name/" + param,
         contentType: "application/json",
         success: function(data) {
       		carregarTelaInicial(data);
@@ -77,6 +77,8 @@ function pesquisaPrincipal() {
     	}
         
     });
+    
+    /*window.location.href = window.location.href + "/" + tipoBusca + "/" + param;*/ 
 }
 
 function updatePrincipal(param, form) {
@@ -133,7 +135,15 @@ function carregarTelaInicial(obj) {
 		if (i % 3 == 0) {
 			str += "<div class='row'>";
 		}
-		str += "<div class='col-sm-4'>";
+		
+		str += "<div class='col-sm-4' ";
+		
+		if(tipoBusca == 'encarte'){
+			/* str += "onclick='window.location=\"" + idMercado + "/encarte/" + encartes.get(i).getId()  +  "\"'"; */
+			str += "onclick='window.location=\"" + window.location + "/encarte/" + obj[i].id  +  "\"'";
+		}
+		
+		str += ">";
 
 		str += "<dl>";
 		str += "</dd>";

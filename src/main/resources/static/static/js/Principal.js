@@ -617,24 +617,26 @@ function carregaProduto2(product) {
 }
 
 function pesquisaPrincipal() {
+	
 	var pesquisaNome = document.getElementById("pesquisaNome").value;
+	
 	if (document.getElementById("pesquisaCategoria") != null) {
 		var pesquisaCategoria = document.getElementById("pesquisaCategoria").value;
 	}
+	
 	if (document.getElementById("pesquisaLocalidade") != null) {
 		var pesquisaLocalidade = document.getElementById("pesquisaLocalidade").value;
 	}
+	
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			// alert(this.responseText);
+	
 			var encarte = JSON.parse(this.responseText);
-			// carregaMercado(encarte);
 			carregaPesquisaPrincipal(encarte);
 
 		}
 	}
-		 	// xhttp.open("GET","http://localhost:8080/encarte/client",true);
 			xhttp.open("GET","http://localhost:8080/produtos/pesquisaFiltro?paramPesquisa="+ pesquisaNome + "&filtro=" + pesquisaCategoria+ "&localidade=" + pesquisaLocalidade, true);
 			xhttp.send();
 }

@@ -40,7 +40,7 @@ public class EncarteController {
         return "TelaDeCadastroDeEncartes";
     }
 
-    @RequestMapping("/TelaDeAlterarEncartes")
+    @RequestMapping("/alterarencartes")
     public String alterar_encarte(Model model) {
         return "TelaDeAlterarEncartes";
     }
@@ -98,6 +98,23 @@ public class EncarteController {
     	where = Specifications.where(EncarteSpecification.name(encarteName));
     	where = where.and(Specifications.where(EncarteSpecification.marketId(idMarket)));
     	
+    	return encarteRepository.findAll(where);
+    }
+    
+    @GetMapping("/paginamercado/{idMarket}/encartename/{encarteName}")
+    @ResponseBody
+    public List<Encarte> findByMarketEncarteName(@PathVariable Long idMarket, @PathVariable String encarteName) {
+    	Specifications<Encarte> where = null;
+    	where = Specifications.where(EncarteSpecification.name(encarteName));
+    	where = where.and(Specifications.where(EncarteSpecification.marketId(idMarket)));
+    	
+    	return encarteRepository.findAll(where);
+    }
+    
+    @GetMapping("/paginamercado/{idMarket}/encartename")
+    @ResponseBody
+    public List<Encarte> findAllByMarketEncarte(@PathVariable Long idMarket) {
+    	Specifications<Encarte> where = Specifications.where(EncarteSpecification.marketId(idMarket));
     	return encarteRepository.findAll(where);
     }
     
