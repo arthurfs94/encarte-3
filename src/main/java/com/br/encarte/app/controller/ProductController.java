@@ -131,6 +131,24 @@ public class ProductController {
     	return prodRepo.findAll(ProductSpecification.name(name));
     }
     
+    @GetMapping("Principal/productname/{name}")
+    @ResponseBody
+    public List<Product> findByNamePrincipal(@PathVariable String name) {
+    	return prodRepo.findAll(ProductSpecification.name(name));
+    }
+    
+    @GetMapping("Principal/encarte/{idEncarte}")
+    @ResponseBody
+    public List<Product> findByIdEncartePrincipal(@PathVariable Long idEncarte) {
+    	return prodRepo.findAll(ProductSpecification.encarteId(idEncarte));
+    }
+    
+    @GetMapping("Principal/productname")
+    @ResponseBody
+    public List<Product> findByNamePrincipal() {
+    	return Lists.newArrayList(prodRepo.findAll());
+    }
+    
     @ResponseBody
     @GetMapping("/product")
     public List<Product> findAll() {
@@ -188,4 +206,14 @@ public class ProductController {
     	model.addAttribute("listaEncartes", productService.montarListaEncarteProduto(idMarket, idEncarte));
     	return "PaginaMercadoProduto";
     }
+    
+//    @GetMapping("Principal/encarte/{idEncarte}")
+//    public String principalEncarte(
+//    		Model model,
+//    		@PathVariable Long idEncarte) {
+//    	
+//    	model.addAttribute("encarte", encarteService.findById(idEncarte).getName());
+//    	model.addAttribute("listaEncartes", productService.montarListaEncarteProduto(null, idEncarte));
+//    	return "PaginaMercadoProduto";
+//    }
 }

@@ -13,8 +13,6 @@ import com.br.encarte.app.repository.ProductRepository;
 import com.br.encarte.app.service.inter.ProductServiceAO;
 import com.br.encarte.app.specification.ProductSpecification;
 
-import jersey.repackaged.com.google.common.collect.ImmutableList;
-
 /**
  * Created by arthur on 20/05/17.
  */
@@ -107,6 +105,11 @@ public class ProductService implements ProductServiceAO {
 	public Object montarListaEncarteProduto(Long idMarket, Long idEncarte) {
     	
 		Specifications<Product> where = Specifications.where(ProductSpecification.encarteId(idEncarte));
+		
+		if(idMarket != null) {
+			where = where.and(Specifications.where(ProductSpecification.marketId(idMarket)));
+		}
+		
     	List<Product> productsEncarte = productRepository.findAll(where);
 		
 		String  str = "";

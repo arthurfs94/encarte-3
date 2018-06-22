@@ -40,9 +40,18 @@ public class EncarteController {
         return "TelaDeCadastroDeEncartes";
     }
 
-    @RequestMapping("/alterarencartes")
-    public String alterar_encarte(Model model) {
+    @RequestMapping("/alterarencartes/{idEncarte}")
+    public String alterar_encarte(
+    		Model model,
+    		@PathVariable Long idEncarte) {
+    	
+    	model.addAttribute("idProd", idEncarte);
         return "TelaDeAlterarEncartes";
+    }
+    
+    @RequestMapping("/listaEncartesAlterar")
+    public String listaEncartesAlterar(Model model) {
+    	return "listaEncartesAlterar";
     }
 
     @RequestMapping("/telaDeExcluirEncarte")
@@ -77,6 +86,18 @@ public class EncarteController {
     }
     
     @ResponseBody
+    @GetMapping("/Principal/encartename/{name}")
+    public List<Encarte> findByNamePrincipal(@PathVariable String name) {
+    	return encarteRepository.findAll(EncarteSpecification.name(name));
+    }
+    
+    @ResponseBody
+    @GetMapping("/Principal/encartename")
+    public List<Encarte> findByNamePrincipal() {
+    	return Lists.newArrayList(encarteRepository.findAll());
+    }
+    
+    @ResponseBody
     @GetMapping("/encarte")
     public List<Encarte> findAll() {
     	return Lists.newArrayList(encarteRepository.findAll());
@@ -96,6 +117,16 @@ public class EncarteController {
     public List<Encarte> findByEncarteMarket(@PathVariable Long idMarket, @PathVariable String encarteName) {
     	Specifications<Encarte> where = null;
     	where = Specifications.where(EncarteSpecification.name(encarteName));
+    	where = where.and(Specifications.where(EncarteSpecification.marketId(idMarket)));
+    	
+    	return encarteRepository.findAll(where);
+    }
+    
+    @GetMapping("/market/{idMarket}/idencarte/{idEncarte}")
+    @ResponseBody
+    public List<Encarte> findByIdEncarteMarket(@PathVariable Long idMarket, @PathVariable Long idEncarte) {
+    	Specifications<Encarte> where = null;
+    	where = Specifications.where(EncarteSpecification.id(idEncarte));
     	where = where.and(Specifications.where(EncarteSpecification.marketId(idMarket)));
     	
     	return encarteRepository.findAll(where);

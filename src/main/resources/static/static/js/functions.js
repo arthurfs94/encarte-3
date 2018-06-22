@@ -355,8 +355,17 @@ function createAndSendProduct(){
 }
 
 function createAndSendEncarte(){
-	var encarte = "";
-	encarte += "{\"name\":\"" + document.getElementById("name").value + "\",";
+	createAndSendEncarte(null)
+}
+
+function createAndSendEncarte(id){
+	var encarte = "{";
+	
+	if(id != null){
+		encarte += "\"id\":\"" + id + "\",";
+	}
+	
+	encarte += "\"name\":\"" + document.getElementById("name").value + "\",";
 	encarte += "\"description\":\"" + document.getElementById("description").value + "\","; 
 	encarte += "\"data\":\"" + document.getElementById("data").value + "\",";
 	encarte += "\"type\":\"" + $('input[name=type]:checked').val() + "\","; 
@@ -412,7 +421,63 @@ function carregarBuscaEncarteEdit(obj) {
 		if (i % 3 == 0) {
 			str += "<div class='row'>";
 		}
-		str += "<div class='col-sm-4' onclick='carregarProdutosEncarte(" + obj[i].id +")' >";
+		str += "<div class='col-sm-4' onclick='carregarBuscaEncarteAlterar(" + obj[i].id +")' >";
+
+		str += "<dl>";
+		str += "</dd>";
+		
+		str += "<img class='card-img-top' src='" + obj[i].picture
+				+ "' alt='Card image' style='width:60%'>";
+
+		str += "<dl>";
+		str += "</dd>";
+		
+		str += "<strong>Nome do Encarte: </strong>" + obj[i].name;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Status: </strong>" + obj[i].status;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Descrição do Encarte: </strong>"
+				+ obj[i].description;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Data de Validade: </strong> " + obj[i].data;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Id do Encarte: </strong> " + obj[i].id;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Categoria: </strong> " + obj[i].type;
+		
+		str += "<dl>";
+		str += "</dd>";
+
+		str += "<dl>";
+		str += "</dl>";
+
+		str += "</div>";
+
+		if (i % 3 == 2) {
+			str += "</div>";
+		}
+	}
+
+	document.querySelector("main5").innerHTML = str;
+
+}
+
+function carregarBuscaEncarteAlterar(obj) {
+    
+	var str = "";
+	for (var i = 0; i < obj.length; i++) {
+
+		if (i % 3 == 0) {
+			str += "<div class='row'>";
+		}
+		
+		/*str += "<div class='col-sm-4' onclick='window.location=\"" + idMercado + "/encarte/" + encartes.get(i).getId()  +  "\"'>";*/
+		str += "<div class='col-sm-4' onclick='window.location=\"/alterarencartes/" + obj[i].id + "\"'  >";
 
 		str += "<dl>";
 		str += "</dd>";
@@ -507,3 +572,39 @@ function salvarProdutos(){
 }
 
 
+function listarEncartesAlterar(){
+	getCookie("id_market")
+	    	
+	$.ajax({
+	    url: "/market/" + getCookie("id_market") + "/encarte/",
+	    type: 'GET',
+	    contentType: 'application/json',
+	    success: function(data){
+			carregarBuscaEncarteAlterar(data);    	
+	    
+	    }
+	});
+}
+
+
+function buscarProdutoAlterar(idProd){
+
+
+	$.ajax({
+            type: "GET",
+            url: "/market/" + getCookie("id_market") + "/idencarte/" + idProd ,
+            contentType: "application/json",
+            success: function(data) {
+    			document.getElementById("name").value = data[0].name;
+				document.getElementById("description").value = data[0].description; 
+				document.getElementById("data").value = data[0].data;
+				
+				$("input[name='type'][value='"+data[0].type+"']").prop('checked', true);
+				
+				document.getElementById("picture").value = data[0].picture;
+				
+				$("input[name='status'][value='"+data[0].status+"']").prop('checked', true); 
+   			 
+    		}
+        });
+}

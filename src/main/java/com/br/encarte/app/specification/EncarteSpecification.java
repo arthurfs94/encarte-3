@@ -12,6 +12,11 @@ import com.br.encarte.app.entity.Market;
 
 public class EncarteSpecification implements Specification<Encarte>{
 
+	public static Specification<Encarte> id (Long id){
+		return (root, criteriaQuery, criteriaBuilder) ->
+		criteriaBuilder.equal( root.<String>get("id"), id);
+	}
+	
 	public static Specification<Encarte> name (String name){
 		return (root, criteriaQuery, criteriaBuilder) ->
     		criteriaBuilder.like( criteriaBuilder.lower(root.<String>get("name")), "%" + name.toLowerCase() + "%");

@@ -77,8 +77,34 @@ function pesquisaPrincipal() {
     	}
         
     });
-    
-    /*window.location.href = window.location.href + "/" + tipoBusca + "/" + param;*/ 
+}
+
+function pesquisaPrincipalGeral() {
+	var param = document.querySelector("#pesquisaNome").value;
+	var tipoBusca = document.querySelector("#tipo-busca").value;
+	$.ajax({
+        type: "GET",
+        url: window.location.href + "/" + tipoBusca + "name/" + param,
+        contentType: "application/json",
+        success: function(data) {
+      		carregarTelaPrincipal(data);
+      		return; 
+    	}
+    });
+}
+
+function pesquisaPrincipalGeralEncarte(idEncarte) {
+	$.ajax({
+        type: "GET",
+        url: window.location.href + "/encarte/" + idEncarte,
+        contentType: "application/json",
+        success: function(data) {
+        	document.querySelector("#tipo-busca").value = "product";
+      		carregarTelaPrincipal(data);
+      		return; 
+    	}
+        
+    });
 }
 
 function updatePrincipal(param, form) {
@@ -139,8 +165,100 @@ function carregarTelaInicial(obj) {
 		str += "<div class='col-sm-4' ";
 		
 		if(tipoBusca == 'encarte'){
-			/* str += "onclick='window.location=\"" + idMercado + "/encarte/" + encartes.get(i).getId()  +  "\"'"; */
 			str += "onclick='window.location=\"" + window.location + "/encarte/" + obj[i].id  +  "\"'";
+		}
+		
+		str += ">";
+
+		str += "<dl>";
+		str += "</dd>";
+		
+		str += "<img class='card-img-top' src='" + obj[i].picture
+				+ "' alt='Card image' style='width:60%'>";
+
+		str += "<dl>";
+		str += "</dd>";
+		
+		if(tipoBusca == 'product'){
+			str += "<strong> Nome do produto: </strong>"
+					+ obj[i].name;
+
+			str += "<dl>";
+			str += "</dd>";
+		
+			str += "<dl>";
+			str += "</dd>";
+			
+			str += "<strong> valor do produto: </strong>"
+					+ obj[i].value;
+			
+			
+		}else if(tipoBusca == 'market'){
+			str += "<strong> Nome do Mercado: </strong>"
+					+ obj[i].name;
+		
+			str += "<dl>";
+			str += "</dd>";
+		
+			str += "<dl>";
+			str += "</dd>";
+			
+			str += "<strong> Localidade: </strong>"
+					+ obj[i].localidade;
+			
+		}else if(tipoBusca == 'encarte'){
+			str += "<strong>Nome do Encarte: </strong>" + obj[i].name;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Status: </strong>" + obj[i].status;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Descrição do Encarte: </strong>"
+					+ obj[i].description;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Data de Validade: </strong> " + obj[i].data;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Id do Encarte: </strong> " + obj[i].id;
+			str += "<dl>";
+			str += "</dd>";
+			str += "<strong>Categoria: </strong> " + obj[i].type;
+		}
+		
+		str += "<dl>";
+		str += "</dd>";
+
+		str += "<dl>";
+		str += "</dl>";
+
+		str += "</div>";
+
+		if (i % 3 == 2) {
+			str += "</div>";
+		}
+	}
+
+	document.querySelector("main5").innerHTML = str;
+
+}
+
+
+function carregarTelaPrincipal(obj) {
+    
+	var tipoBusca = document.querySelector("#tipo-busca").value;
+	
+	var str = "";
+	for (var i = 0; i < obj.length; i++) {
+
+		if (i % 3 == 0) {
+			str += "<div class='row'>";
+		}
+		
+		str += "<div class='col-sm-4' ";
+		
+		if(tipoBusca == 'encarte'){
+			str += 'onclick="pesquisaPrincipalGeralEncarte(' + obj[i].id + ')"';
 		}
 		
 		str += ">";

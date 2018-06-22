@@ -68,6 +68,7 @@ public class EncarteService implements EncarteServiceAO {
     
     public Encarte convert(EncarteRequest encarte) {
 		Encarte encarteNovo = new Encarte();
+		encarteNovo.setId(encarte.getId());
 		encarteNovo.setDescription(encarte.getDescription());
 		encarteNovo.setName(encarte.getName());
 		encarteNovo.setPicture(encarte.getPicture());

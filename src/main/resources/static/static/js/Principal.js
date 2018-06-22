@@ -256,10 +256,8 @@ function buscaEncarte() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			// alert(this.responseText);
 			var encarte = JSON.parse(this.responseText);
 			carregaEncarte(encarte);
-			// carregaProduto(encarte);
 		}else if (this.status == 403){
 			window.location.href = '/signinmercado';
 		}
@@ -273,16 +271,16 @@ function buscaEncartePrincipal() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			// alert(this.responseText);
 			var encarte = JSON.parse(this.responseText);
-			carregaEncarte(encarte);
-			// carregaProduto(encarte);
+			carregaEncartePrincipal(encarte);
 		}
 	}
 
 	xhttp.open("GET", "/encarte", true);
 	xhttp.send();
 }
+
+
 
 function carregaEncarte(encarte) {
 	var str = "";
@@ -316,29 +314,7 @@ function carregaEncarte(encarte) {
 		str += "</dd>";
 		str += "<strong>Categoria: </strong> " + encarte[i].type;
 		str += "<td>";
-		// str += "<script src='../static/js/functions.js'></script>";a
-		// str += "<script src='../static/js/Principal.js'></script>";
-		// str += "<form id='form' method='put'>";
-		// str += "<div class='input-group'>";
-		//        
-		// // str += "<input type='hidden' name='id' value="+encarte[i].id+">";
-		//
-		// str += "<span class='input'>Encarte: </span>";
-		// str += "<label class='radio-inline'><input type='radio' name='status'
-		// value='Ativado'>Ativar</label>";
-		// str += "<label class='radio-inline'><input type='radio' name='status'
-		// value='Desativado'>Desativar</label>";
-		// str += "</div>";
-		// str += "<br>";
-		// str += "<button class='btn btn-lg btn-primary btn-block'
-		// onclick=\"update('encarte','form')\">Alterar encarte";
-		// // str += "<button class='btn btn-lg btn-primary btn-block'
-		// onclick='update'('encarte', 'form')'>Alterar encarte";
-		// // str += "<button class='btn btn-lg btn-primary btn-block'
-		// onclick='update('encarte', 'form')' type='submit'>Alterar
-		// Encarte</button>";
-		// str += "</button>";
-		// str += "</form>";
+
 		str += "<th>";
 		str += "</div>";
 
@@ -348,9 +324,51 @@ function carregaEncarte(encarte) {
 
 	}
 	document.querySelector("main5").innerHTML = str;
-	// var main = document.getElementsByTagName("main");
-	// main[0].innerHTML = motores[0].nome;
+}
 
+function carregaEncartePrincipal(encarte) {
+console.log("daddsd");
+	var str = "";
+	for (var i = 0; i < encarte.length; i++) {
+
+		if (i % 3 == 0) {
+			str += "<div class='row'>";
+		}
+		str += "<div class='col-sm-4'>";
+		str += "<br>";
+		str += "<dl>";
+		str += "<img class='card-img-top' src='" + encarte[i].picture
+				+ "' alt='Card image' style='width:60%'>";
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Nome do Encarte: </strong>" + encarte[i].name;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Status: </strong>" + encarte[i].status;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Descrição do Encarte: </strong>"
+				+ encarte[i].description;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Data de Validade: </strong> " + encarte[i].data;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Id do Encarte: </strong> " + encarte[i].id;
+		str += "<dl>";
+		str += "</dd>";
+		str += "<strong>Categoria: </strong> " + encarte[i].type;
+		str += "<td>";
+
+		str += "<th>";
+		str += "</div>";
+
+		if (i % 3 == 2) {
+			str += "</div>";
+		}
+
+	}
+	document.querySelector("main5").innerHTML = str;
 }
 
 function buscaEncarte2() {
@@ -615,8 +633,7 @@ function carregaProduto2(product) {
 	//document.querySelector("product").innerHTML = str;
 
 }
-
-function pesquisaPrincipal() {
+/*function pesquisaPrincipal() {
 	
 	var pesquisaNome = document.getElementById("pesquisaNome").value;
 	
@@ -638,8 +655,7 @@ function pesquisaPrincipal() {
 		}
 	}
 			xhttp.open("GET","http://localhost:8080/produtos/pesquisaFiltro?paramPesquisa="+ pesquisaNome + "&filtro=" + pesquisaCategoria+ "&localidade=" + pesquisaLocalidade, true);
-			xhttp.send();
-}
+			xhttp.send();*/
 
 function carregaPesquisaPrincipal(pesquisaFiltro) {
 	var str = "";

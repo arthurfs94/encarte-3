@@ -11,7 +11,8 @@
      <script src="../static/js/functionsExterno.js"></script>
      <script>
 		$(document).ready(function(){
-		   buscaEncartePrincipal();
+		   /*buscaEncartePrincipal();*/
+		   pesquisaPrincipalGeral();
 		});
   	</script>  
   
@@ -96,9 +97,9 @@
 	<li>
 		<a> 
 	      <select class="form-control" id="tipo-busca">
+	        <option value="encarte">Encartes</option>
 	        <option value="product">Produtos</option>
 	        <option value="market">Estabelecimentos</option>
-	        <option value="encarte">Encartes</option>
 	      </select>
     	</a>
 	</li>
@@ -107,7 +108,7 @@
    		<a>		
 	     <input type="text" class="form-control" placeholder="Pesquisar.." id="pesquisaNome">
 	     	
-	     	<button class="btn btn-default" onclick="pesquisaPrincipal()"> 
+	     	<button class="btn btn-default" onclick="pesquisaPrincipalGeral()"> 
 	         <i class="glyphicon glyphicon-search"></i>
 	       </button> 
 	    </a>
@@ -327,39 +328,7 @@ function showError(error)
       break;
     }
   }
-// function pesquisaPrincipal(param,filtro,localidade, form) {
-// 	console.log("PARAM: "+param)
-// 	console.log("FUNÇÃO PESQUISAR")
-	
-//     $.ajax({
-//         type: "GET",
-//         url: "/produtos/pesquisaEncarte?paramPesquisa="+param+jQuery("#pesquisaNome").val(),
-//         data: null,
-//         contentType: "application/json"
-//     }).done(function (data) {
-//         console.log(data);
-//         jQuery.each(data, function (k, v) {
-//             if (k != "type")
-//                 $("input[name=" + k + "]").val(v);
-//             else
-//             	$("input[value=" + v + "]").prop("checked",true);
-//         });
-//     });
-// }
 
-// function updatePrincipal(param, form) {
-//     json = converteFormEmJSON(form);
-//     console.log(json);
-//     if (json != "null") {
-//         $.ajax({
-//             type: "PUT",
-//             url: "/Principal/" + param,
-//             data: json,
-//             contentType: "application/json"
-//         });
-//     success();
-//     }
-// }
 
 
 </script>
