@@ -125,6 +125,20 @@ public class ProductController {
         return "ListaProdutosUsuarios";
     }
     
+    @RequestMapping("/listaProductsAlterar")
+    public String listaEncartesAlterar(Model model) {
+    	return "listaProductsAlterar";
+    }
+    
+    @RequestMapping("/alterarproducts/{idProd}")
+    public String alterarProduct(
+    		Model model,
+    		@PathVariable Long idProd) {
+    	
+    	model.addAttribute("idProd", idProd);
+        return "TelaDeAlterarProduto";
+    }
+    
     @GetMapping("/product/{name}")
     @ResponseBody
     public List<Product> findByName(@PathVariable String name) {
@@ -160,6 +174,14 @@ public class ProductController {
     public List<Product> findProductByMarket(@PathVariable Long idMarket) {
     	Specifications<Product> where = null;
     	where = Specifications.where(ProductSpecification.marketId(idMarket));
+    	return prodRepo.findAll(where);
+    }
+    
+    @GetMapping("/market/{idMarket}/idproduct/{idProduct}")
+    @ResponseBody
+    public List<Product> findProductByMarketIdProduct(@PathVariable Long idProduct) {
+    	Specifications<Product> where = null;
+    	where = Specifications.where(ProductSpecification.id(idProduct));
     	return prodRepo.findAll(where);
     }
     

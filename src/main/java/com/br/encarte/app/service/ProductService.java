@@ -54,6 +54,7 @@ public class ProductService implements ProductServiceAO {
 
 	public Product convert(ProductRequest product) {
 		Product productNovo = new Product();
+		productNovo.setId(product.getId());
 		productNovo.setDescrition(product.getDescrition());
 		productNovo.setName(product.getName());
 		productNovo.setPicture(product.getPicture());

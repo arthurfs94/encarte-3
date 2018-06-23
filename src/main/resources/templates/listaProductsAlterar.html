@@ -7,9 +7,15 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="../static/js/Principal.js"></script>
-  <script src="../static/js/functions.js"></script>
-  <style>
+  <script src="/static/js/Principal.js"></script>
+  <script src="/static/js/functions.js"></script>
+  <script>
+		$(document).ready(function(){
+			listarProductsAlterar();
+		});
+  </script>
+  
+    <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
@@ -23,7 +29,7 @@
     }
     
   .carousel-inner img {
-      width: 100%; /* Set width to 100% */
+      width: 90%; /* Set width to 100% */
       margin: auto;
       min-height:200px;
   }
@@ -37,6 +43,10 @@
      body { 
    background-image: url('http://2.bp.blogspot.com/_lS-sZAoamTA/TQurXJpI6wI/AAAAAAAAAyY/rMjAod8Xam8/s1600/re.jpg'); 
    } 
+   span {
+   cursor:Pointer;
+   }
+  
   </style>
 </head>
 <body>
@@ -52,7 +62,19 @@
        <a class="navbar-brand" href="/mercado">Encarte Digital</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav">
+          <li>
+          	<a id="gerProd" href="/gerenciamentoproduto">Gerenciamento Produtos</a>
+          </li>
+          
+          <li>
+          	<a id="gerProd" href="gerenciamentoencartes">Gerenciamento Encartes</a>
+      	  </li>
+      	  
+      	  <li>
+          	<a id="gerProd" href="listaencartesproducts">Vincular Produtos aos Encartes</a>
+      	  </li>
+          
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a onclick="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -61,22 +83,27 @@
   </div>
 </nav>
 
+
+
+
+
 <div class="container">
-    <h2><li>Gerenciamento dos Produtos</li></h2>
-    <p></p>            
-    <table class="table">
-      <tbody>
-        <tr>
-          <td><a class="btn btn-lg btn-primary btn-block" href="productregistration">Cadastrar</a></td>
-          <td><a class="btn btn-lg btn-primary btn-block" href="listaProductsAlterar">Alterar</a></td>
-          <td><a class="btn btn-lg btn-primary btn-block" href="telaDeExcluirProduto">Excluir</a></td>
-          <td>
-          	<a class="btn btn-lg btn-primary btn-block" id="gerProd" href="listaprodutos">Listar</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+
+	<div class="jumbotron">
+		<h2>Produtos do Estabelecimento</h2>
+		<main5></main5>
+	</div>
+</div>
+    
+ 
+
+</div>
+</div> 
+ <br>
+
+<footer class="container-fluid text-center">
+  <h2>Todos juntos lutando com o meio ambiente!</h2>
+</footer>
 
 </body>
 </html>

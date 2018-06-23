@@ -318,10 +318,20 @@ function getCookie(name) {
     return match ? match[1] : null;
 }
 
-
 function createAndSendProduct(){
-	var product = "";
-	product += "{\"name\":\"" + document.getElementById("name").value + "\",";
+
+	createAndSendProduct(null);
+
+}
+
+function createAndSendProduct(idProd){
+	var product = "{";
+	
+	if(idProd != null){
+		product += "\"id\":\"" + idProd + "\",";
+	}
+	
+	product += "\"name\":\"" + document.getElementById("name").value + "\",";
 	product += "\"descrition\":\"" + document.getElementById("descrition").value + "\","; 
 	product += "\"value\":\"" + document.getElementById("value").value + "\","; 
 	product += "\"picture\":\"" + document.getElementById("picture").value + "\","; 
@@ -340,11 +350,13 @@ function createAndSendProduct(){
             success: function(data) {
     			success();
     			
-    			document.getElementById("name").value = "";
-				document.getElementById("descrition").value = ""; 
-				document.getElementById("value").value = ""; 
-				document.getElementById("picture").value = ""; 
-				document.getElementById("serial").value = "";
+    			if(idProd == null){
+	    			document.getElementById("name").value = "";
+					document.getElementById("descrition").value = ""; 
+					document.getElementById("value").value = ""; 
+					document.getElementById("picture").value = ""; 
+					document.getElementById("serial").value = "";
+    			}
     			
       			return; 
     		}
@@ -384,18 +396,20 @@ function createAndSendEncarte(id){
             success: function(data) {
     			success();
     			
-    			document.getElementById("name").value = "";
-				document.getElementById("description").value = ""; 
-				document.getElementById("data").value = "";
-				document.getElementById("picture").value = "";
-				
-				$("input:radio[name='status']").each(function(i) {
-				       this.checked = false;
-				}); 
-				
-				$("input:radio[name='type']").each(function(i) {
-				       this.checked = false;
-				}); 
+    			if(id == null){
+	    			document.getElementById("name").value = "";
+					document.getElementById("description").value = ""; 
+					document.getElementById("data").value = "";
+					document.getElementById("picture").value = "";
+					
+					$("input:radio[name='status']").each(function(i) {
+					       this.checked = false;
+					}); 
+					
+					$("input:radio[name='type']").each(function(i) {
+					       this.checked = false;
+					}); 
+    			}
     			
       			return; 
     		}
@@ -523,6 +537,55 @@ function carregarBuscaEncarteAlterar(obj) {
 
 }
 
+function carregarBuscaProductAlterar(obj) {
+	
+	var str = "";
+	for (var i = 0; i < obj.length; i++) {
+
+		if (i % 3 == 0) {
+			str += "<div class='row'>";
+		}
+
+		str += "<div class='col-sm-4' onclick='window.location=\"/alterarproducts/" + obj[i].id + "\"'  >";
+
+		str += "<dl>";
+		str += "</dd>";
+		
+		str += "<img class='card-img-top' src='" + obj[i].picture
+				+ "' alt='Card image' style='width:60%'>";
+
+		str += "<dl>";
+		str += "</dd>";
+		
+		str += "<strong> Nome do produto: </strong>"
+				+ obj[i].name;
+
+		str += "<dl>";
+		str += "</dd>";
+	
+		str += "<dl>";
+		str += "</dd>";
+		
+		str += "<strong> valor do produto: </strong>"
+				+ obj[i].value;
+				
+		str += "<dl>";
+		str += "</dd>";
+
+		str += "<dl>";
+		str += "</dl>";
+
+		str += "</div>";
+
+		if (i % 3 == 2) {
+			str += "</div>";
+		}
+	}
+
+	document.querySelector("main5").innerHTML = str;
+
+}
+
 function carregarProdutosEncarte(idEncarte){
 	document.cookie= "id_encarte=" + idEncarte;
     window.location.href = '/listaproductsencarte/market/' + getCookie("id_market") + '/encarte/' + idEncarte;
@@ -586,25 +649,63 @@ function listarEncartesAlterar(){
 	});
 }
 
+function listarProductsAlterar(){
+	getCookie("id_market")
+	    	
+	$.ajax({
+	    url: "/market/" + getCookie("id_market") + "/product/",
+	    type: 'GET',
+	    contentType: 'application/json',
+	    success: function(data){
+			carregarBuscaProductAlterar(data);    	
+	    
+	    }
+	});
+}
+
+
+
+function buscarEncarteAlterar(idEncarte){
+
+	$.ajax({
+        type: "GET",
+        url: "/market/" + getCookie("id_market") + "/idencarte/" + idEncarte ,
+        contentType: "application/json",
+        success: function(data) {
+			document.getElementById("name").value = data[0].name;
+			document.getElementById("description").value = data[0].description; 
+			document.getElementById("data").value = data[0].data;
+			
+			$("input[name='type'][value='"+data[0].type+"']").prop('checked', true);
+			
+			document.getElementById("picture").value = data[0].picture;
+			
+			$("input[name='status'][value='"+data[0].status+"']").prop('checked', true); 
+		 
+		}
+    });
+}
 
 function buscarProdutoAlterar(idProd){
 
-
 	$.ajax({
-            type: "GET",
-            url: "/market/" + getCookie("id_market") + "/idencarte/" + idProd ,
-            contentType: "application/json",
-            success: function(data) {
-    			document.getElementById("name").value = data[0].name;
-				document.getElementById("description").value = data[0].description; 
-				document.getElementById("data").value = data[0].data;
-				
-				$("input[name='type'][value='"+data[0].type+"']").prop('checked', true);
-				
-				document.getElementById("picture").value = data[0].picture;
-				
-				$("input[name='status'][value='"+data[0].status+"']").prop('checked', true); 
-   			 
-    		}
-        });
+        type: "GET",
+        url: "/market/" + getCookie("id_market") + "/idproduct/" + idProd ,
+        contentType: "application/json",
+        success: function(data) {
+        
+        console.log(data);
+			document.getElementById("name").value = data[0].name;
+			
+			document.getElementById("descrition").value = data[0].descrition; 
+			
+			$("input[name='type'][value='"+data[0].type+"']").prop('checked', true);
+			
+			document.getElementById("value").value = data[0].value;
+			
+			document.getElementById("picture").value = data[0].picture;
+			
+			document.getElementById("serial").value = data[0].serial;		 
+		}
+    });
 }

@@ -11,10 +11,10 @@
   	<script th:inline="javascript">
 		/*<![CDATA[*/
 		
-		    var idProd = /*[[${idProd}]]*/ 'default';
+		    var idEncarte = /*[[${idEncarte}]]*/ 'default';
 		    
 		    $(document).ready(function() {
-				buscarProdutoAlterar(idProd);
+				buscarEncarteAlterar(idEncarte);
 			});
 		    
 		/*]]>*/
@@ -101,7 +101,7 @@
             </div>
         <br>
 
-        <button class="btn btn-lg btn-primary btn-block" th:onclick="${'createAndSendEncarte(' + idProd + ');'}" >Alterar Encarte</button>
+        <button class="btn btn-lg btn-primary btn-block" th:onclick="${'createAndSendEncarte(' + idEncarte + ');'}" >Alterar Encarte</button>
         
         
 </div>

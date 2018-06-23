@@ -45,7 +45,7 @@ public class EncarteController {
     		Model model,
     		@PathVariable Long idEncarte) {
     	
-    	model.addAttribute("idProd", idEncarte);
+    	model.addAttribute("idEncarte", idEncarte);
         return "TelaDeAlterarEncartes";
     }
     
