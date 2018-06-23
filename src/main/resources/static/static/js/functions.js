@@ -421,7 +421,7 @@ function carregarBuscaEncarteEdit(obj) {
 		if (i % 3 == 0) {
 			str += "<div class='row'>";
 		}
-		str += "<div class='col-sm-4' onclick='carregarBuscaEncarteAlterar(" + obj[i].id +")' >";
+		str += "<div class='col-sm-4' onclick='carregarProdutosEncarte(" + obj[i].id +")' >";
 
 		str += "<dl>";
 		str += "</dd>";
