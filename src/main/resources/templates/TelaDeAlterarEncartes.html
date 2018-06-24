@@ -15,6 +15,7 @@
 		    
 		    $(document).ready(function() {
 				buscarEncarteAlterar(idEncarte);
+				document.querySelector("marketcredent").innerHTML = "<div>" + getCookie("name_market") + "</div>";
 			});
 		    
 		/*]]>*/
@@ -100,6 +101,11 @@
         <label class="radio-inline"><input type="radio" name="status" value="Desativado">Desativar</label>
         </div>
     <br>
+    
+    <div class="alert alert-info">
+		<strong>Estabelecimento:  </strong> 
+		<marketcredent></marketcredent>
+	</div>
 
     <button class="btn btn-lg btn-primary btn-block" th:onclick="${'createAndSendEncarte(' + idEncarte + ');'}" >Alterar Encarte</button>
         
