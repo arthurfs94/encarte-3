@@ -95,4 +95,16 @@ public class MarketController {
     public List<Market> findAll() {
     	return Lists.newArrayList(marketRepository.findAll());
     }
+    
+    @ResponseBody
+    @GetMapping("/Principal/marketname/{name}")
+    public List<Market> findByNamePrincipal(@PathVariable String name) {
+    	return marketRepository.findAll(MarketSpecification.name(name));
+    }
+    
+    @ResponseBody
+    @GetMapping("/Principal/marketname")
+    public List<Market> findAllByPrincipal() {
+    	return Lists.newArrayList(marketRepository.findAll());
+    }
 }

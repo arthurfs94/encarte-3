@@ -259,6 +259,8 @@ function carregarTelaPrincipal(obj) {
 		
 		if(tipoBusca == 'encarte'){
 			str += 'onclick="pesquisaPrincipalGeralEncarte(' + obj[i].id + ')"';
+		}else if(tipoBusca == 'market'){
+			str += 'onclick="window.location=\'/paginamercado/' + obj[i].id + "'\"";
 		}
 		
 		str += ">";
