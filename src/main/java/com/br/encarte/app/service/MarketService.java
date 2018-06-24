@@ -23,6 +23,9 @@ public class MarketService implements MarketServiceAO {
     
     @Autowired
     private EncarteRepository encarteRepository;
+    
+    @Autowired
+    private ProductService productService;
 
     @Autowired
     public MarketService(MarketRepository marketRepository) {
@@ -115,5 +118,9 @@ public class MarketService implements MarketServiceAO {
 		}
 		
 		return str;
+	}
+
+	public Object montarListaProducts(Long idMarket) {
+		return productService.montarListaMaketProduto(idMarket);
 	}
 }

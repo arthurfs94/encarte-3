@@ -156,4 +156,60 @@ public class ProductService implements ProductServiceAO {
 		
 		return str;
 	}
+	
+	public Object montarListaMaketProduto(Long idMarket) {
+		
+		Specifications<Product> where = Specifications.where(ProductSpecification.marketId(idMarket));
+		
+		List<Product> productsEncarte = productRepository.findAll(where);
+		
+		String  str = "";
+		
+		for (int i = 0; i < productsEncarte.size(); i++) {
+			
+			if (i % 3 == 0) {
+				str += "<div class='row'>";
+			}
+			str += "<div class='col-sm-4'>";
+			
+			str += "<dl>";
+			str += "</dd>";
+			
+			str += "<img class='card-img-top' src='" + productsEncarte.get(i).getPicture()
+					+ "' alt='Card image' style='width:60%'>";
+			
+			str += "<dl>";
+			str += "</dd>";
+			
+			str += "<strong>Nome do Produto: </strong>" + productsEncarte.get(i).getName();
+			str += "<dl>";
+			str += "</dd>";
+			
+			str += "<strong>Valor do produto: </strong>" + productsEncarte.get(i).getValue();
+			str += "<dl>";
+			str += "</dd>";
+			
+			str += "<strong>Id do Encarte: </strong> " + productsEncarte.get(i).getId();
+			str += "<dl>";
+			str += "</dd>";
+			
+			str += "<strong>Categoria: </strong> " + productsEncarte.get(i).getType();
+			
+			str += "<dl>";
+			str += "</dd>";
+			
+			str += "<dl>";
+			str += "</dl>";
+			
+			str += "</div>";
+			
+			if (i % 3 == 2) {
+				str += "</div>";
+			}
+			
+		}
+		
+		return str;
+	}
+	
 }

@@ -65,6 +65,7 @@ public class MarketController {
     public String PaginaMercado(Model model, @PathVariable Long idMarket) {
     	
     	model.addAttribute("listaEncartes", marketService.montarListaEncarte(idMarket));
+    	model.addAttribute("listaProducts", marketService.montarListaProducts(idMarket));
         return "PaginaMercado";
     }
     
