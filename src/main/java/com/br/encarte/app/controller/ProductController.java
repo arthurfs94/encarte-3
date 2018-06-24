@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -130,6 +131,11 @@ public class ProductController {
     	return "listaProductsAlterar";
     }
     
+    @RequestMapping("/listaproductsexcluir")
+    public String listaProductsExcluir(Model model) {
+    	return "listaProductsExcluir";
+    }
+    
     @RequestMapping("/alterarproducts/{idProd}")
     public String alterarProduct(
     		Model model,
@@ -137,6 +143,15 @@ public class ProductController {
     	
     	model.addAttribute("idProd", idProd);
         return "TelaDeAlterarProduto";
+    }
+    
+    @RequestMapping("/excluirproducts/{idProd}")
+    public String excluirProducts(
+    		Model model,
+    		@PathVariable Long idProd) {
+    	
+    	model.addAttribute("idProd", idProd);
+    	return "telaDeExcluirProduto";
     }
     
     @GetMapping("/product/{name}")
@@ -218,6 +233,13 @@ public class ProductController {
     	return prodRepo.save( productService.convert(product));
     }
     
+    @DeleteMapping("/product/excluir/{idProd}")
+    @ResponseBody
+    public Boolean deleteProduct(@PathVariable Long idProd) {
+    	prodRepo.delete(idProd);
+    	return true;
+    }
+    
     @RequestMapping("/paginamercado/{idMarket}/encarte/{idEncarte}")
     public String paginaMercadoEncarte(
     		Model model, 
@@ -229,13 +251,4 @@ public class ProductController {
     	return "PaginaMercadoProduto";
     }
     
-//    @GetMapping("Principal/encarte/{idEncarte}")
-//    public String principalEncarte(
-//    		Model model,
-//    		@PathVariable Long idEncarte) {
-//    	
-//    	model.addAttribute("encarte", encarteService.findById(idEncarte).getName());
-//    	model.addAttribute("listaEncartes", productService.montarListaEncarteProduto(null, idEncarte));
-//    	return "PaginaMercadoProduto";
-//    }
 }

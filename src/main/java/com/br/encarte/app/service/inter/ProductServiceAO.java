@@ -12,9 +12,6 @@ public interface ProductServiceAO {
     void save(Product product);
 
 
-    void delete(Long id);
-
-
     void update(Product product);
 
 

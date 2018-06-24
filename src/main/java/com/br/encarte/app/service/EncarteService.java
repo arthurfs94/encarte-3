@@ -88,10 +88,12 @@ public class EncarteService implements EncarteServiceAO {
 		
 		Set<Product> products = new HashSet<>();
 		
-		for (ProductRequest productRequest : encarteRequest.getProducts()) {
-			Product product = new Product();
-			product.setId(productRequest.getId());
-			products.add(product);
+		if(encarteRequest.getProducts() != null) {
+			for (ProductRequest productRequest : encarteRequest.getProducts()) {
+				Product product = new Product();
+				product.setId(productRequest.getId());
+				products.add(product);
+			}
 		}
 		
 		encarte.setProduct(products);

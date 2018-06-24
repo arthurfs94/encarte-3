@@ -366,6 +366,27 @@ function createAndSendProduct(idProd){
 
 }
 
+function createAndSendDeleteProduct(idProd){
+	
+	$.ajax({
+	    type: "DELETE",
+	    url: "/product/excluir/" + idProd ,
+	    contentType: "application/json",
+	    success: function(data) {
+			success();
+			
+			document.getElementById("name").value = "";
+			document.getElementById("descrition").value = ""; 
+			document.getElementById("value").value = ""; 
+			document.getElementById("picture").value = ""; 
+			document.getElementById("serial").value = "";
+			
+			return; 
+		}
+	});
+
+}
+
 function createAndSendEncarte(){
 	createAndSendEncarte(null)
 }
@@ -385,35 +406,60 @@ function createAndSendEncarte(id){
 	encarte += "\"status\":\"" + $('input[name=status]:checked').val() + "\","; 
 	encarte += "\"idMarket\":\"" + getCookie("id_market") + "\"}"; 
 	
-	console.log(encarte);
+    $.ajax({
+        type: "POST",
+        url: "/encarte/cadastrar" ,
+        data: encarte,
+        contentType: "application/json",
+        success: function(data) {
+			success();
+			
+			if(id == null){
+    			document.getElementById("name").value = "";
+				document.getElementById("description").value = ""; 
+				document.getElementById("data").value = "";
+				document.getElementById("picture").value = "";
+				
+				$("input:radio[name='status']").each(function(i) {
+				       this.checked = false;
+				}); 
+				
+				$("input:radio[name='type']").each(function(i) {
+				       this.checked = false;
+				}); 
+			}
+			
+  			return; 
+		}
+    });
+}
 
 
-        $.ajax({
-            type: "POST",
-            url: "/encarte/cadastrar" ,
-            data: encarte,
-            contentType: "application/json",
-            success: function(data) {
-    			success();
-    			
-    			if(id == null){
-	    			document.getElementById("name").value = "";
-					document.getElementById("description").value = ""; 
-					document.getElementById("data").value = "";
-					document.getElementById("picture").value = "";
-					
-					$("input:radio[name='status']").each(function(i) {
-					       this.checked = false;
-					}); 
-					
-					$("input:radio[name='type']").each(function(i) {
-					       this.checked = false;
-					}); 
-    			}
-    			
-      			return; 
-    		}
-        });
+function createAndSendExcluirEncarte(id){
+	
+    $.ajax({
+        type: "DELETE",
+        url: "/encarte/excluir/" + id ,
+        contentType: "application/json",
+        success: function(data) {
+			success();
+			
+			document.getElementById("name").value = "";
+			document.getElementById("description").value = ""; 
+			document.getElementById("data").value = "";
+			document.getElementById("picture").value = "";
+			
+			$("input:radio[name='status']").each(function(i) {
+			       this.checked = false;
+			}); 
+			
+			$("input:radio[name='type']").each(function(i) {
+			       this.checked = false;
+			}); 
+			
+  			return; 
+		}
+    });
 }
 
 
@@ -481,7 +527,7 @@ function carregarBuscaEncarteEdit(obj) {
 
 }
 
-function carregarBuscaEncarteAlterar(obj) {
+function carregarBuscaEncarte(obj, tipo) {
     
 	var str = "";
 	for (var i = 0; i < obj.length; i++) {
@@ -490,8 +536,7 @@ function carregarBuscaEncarteAlterar(obj) {
 			str += "<div class='row'>";
 		}
 		
-		/*str += "<div class='col-sm-4' onclick='window.location=\"" + idMercado + "/encarte/" + encartes.get(i).getId()  +  "\"'>";*/
-		str += "<div class='col-sm-4' onclick='window.location=\"/alterarencartes/" + obj[i].id + "\"'  >";
+		str += "<div class='col-sm-4' onclick='window.location=\"/" + tipo + "/" + obj[i].id + "\"'  >";
 
 		str += "<dl>";
 		str += "</dd>";
@@ -537,7 +582,7 @@ function carregarBuscaEncarteAlterar(obj) {
 
 }
 
-function carregarBuscaProductAlterar(obj) {
+function carregarBuscaProduct(obj, tipo) {
 	
 	var str = "";
 	for (var i = 0; i < obj.length; i++) {
@@ -546,7 +591,7 @@ function carregarBuscaProductAlterar(obj) {
 			str += "<div class='row'>";
 		}
 
-		str += "<div class='col-sm-4' onclick='window.location=\"/alterarproducts/" + obj[i].id + "\"'  >";
+		str += "<div class='col-sm-4' onclick='window.location=\"/" + tipo + "/" + obj[i].id + "\"'  >";
 
 		str += "<dl>";
 		str += "</dd>";
@@ -593,16 +638,26 @@ function carregarProdutosEncarte(idEncarte){
 
 function salvarProdutos(){
 	
-	var str='{"id":"' + getCookie("id_encarte") + '", "products":[';
+	var str='{"id":"' + getCookie("id_encarte") + '"';
 	
+	var elements = "";
 	$("input:checkbox[name=productBound]:checked").each(function () {
-            str += '{"id":"' + $(this).val() + '"},';
+            elements += '{"id":"' + $(this).val() + '"},';
+		console.log("el ", elements);
     });
     
-    str = str.substring(0, str.length-1);
+    if(elements.length > 0){
+    	console.log("el > 0 ", elements);
+    	elements = elements.substring(0, elements.length-1);
+    	
+    	console.log("el sub ", elements);
+    	
+    	str += ', "products":[' + elements + ']';
+    }
 	
-	str += ']}';
-	
+	str += '}';
+
+	console.log("humm: ", str);	
 
 	$.ajax({
         type: "POST",
@@ -643,7 +698,21 @@ function listarEncartesAlterar(){
 	    type: 'GET',
 	    contentType: 'application/json',
 	    success: function(data){
-			carregarBuscaEncarteAlterar(data);    	
+			carregarBuscaEncarte(data, "alterarencartes");    	
+	    
+	    }
+	});
+}
+
+function listarEncartesExcluir(){
+	getCookie("id_market")
+	    	
+	$.ajax({
+	    url: "/market/" + getCookie("id_market") + "/encarte/",
+	    type: 'GET',
+	    contentType: 'application/json',
+	    success: function(data){
+			carregarBuscaEncarte(data, "excluirencartes");    	
 	    
 	    }
 	});
@@ -657,12 +726,26 @@ function listarProductsAlterar(){
 	    type: 'GET',
 	    contentType: 'application/json',
 	    success: function(data){
-			carregarBuscaProductAlterar(data);    	
+			carregarBuscaProduct(data, "alterarproducts");    	
 	    
 	    }
 	});
 }
 
+
+function listarProductsExcluir(){
+	getCookie("id_market")
+	    	
+	$.ajax({
+	    url: "/market/" + getCookie("id_market") + "/product/",
+	    type: 'GET',
+	    contentType: 'application/json',
+	    success: function(data){
+			carregarBuscaProduct(data, "excluirproducts");    	
+	    
+	    }
+	});
+}
 
 
 function buscarEncarteAlterar(idEncarte){

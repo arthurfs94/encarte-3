@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="../static/js/functions.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="../static/js/Principal.js"></script>
+    <script src="/static/js/functions.js"></script>
+    <script src="/static/js/Principal.js"></script>
     
     <title>Tela de Excluir Encartes</title>
 
@@ -22,6 +22,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+            
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		
+		    var idEncarte = /*[[${idEncarte}]]*/ 'default';
+		    
+		    $(document).ready(function() {
+				buscarEncarteAlterar(idEncarte);
+			});
+		    
+		/*]]>*/
+	</script>
+	
 </head>
 <style>
 	body { 
@@ -48,59 +61,49 @@
 </nav>
 <br><br><br>
 <div class="container">
-   <div class="jumbotron">
-<h1>Tela de Excluir os Encartes</h1>
-<br>
-    <form id="form" method="post">
-        <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1">Procurar</span>
-            <input type="text" class="form-control" placeholder="id Encarte" name="id" id="id_user">
-        </div>
-        <br>
-        <button type="button" class="btn btn-primary" onclick="read('encarte', 'id_user', 'form')">Pesquisar</button>
-        <br>
-        <br>
-        <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1">Nome do Encarte</span>
-            <input type="text" class="form-control" placeholder="Nome" name="name" disabled>
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <button class="btn btn-lg btn-primary btn-block" onclick="delete_('encarte', 'id_user', 'form') ">Excluir Encarte
-        </button>
-        </div>
-</form>
-<br>
-  <div class="container text-center">  
-  <div class="jumbotron">    
-  <h1>Encartes Cadastrados</h1><br>
-  <div class="row">
-    <div class="col-sm-12">
-      
-      <main5></main5s>
-    
-    <!--<div class="col-sm-2">
-      <div class="well">
-       <p>Some text..</p>
-      </div>
-      <div class="well">
-       <p>Some text..</p>
-      </div>
-    </div>-->
-  </div>
-</div>
-</div>
+	<div class="jumbotron">
+		<h1>Tela de Excluir os Encartes</h1>
+		<br>
 
-
-<br>
-
-        
+		<div class="input-group input-group-lg">
+	        <span class="input-group-addon" id="sizing-addon1">Nome do Encarte</span>
+	        <input type="text" class="form-control" placeholder="Nome" name="name" id="name">
+	    </div>
+	    <br>
+	    <div class="input-group">
+	        <span class="input-group-addon" id="sizing-addon2">Descrição</span>
+	        <input type="text" class="form-control" placeholder="Descrição" name="description" id="description">
+	    </div>
+	    <br>
+	    <div class="input-group input-group-sm">
+	        <span class="input-group-addon" id="sizing-addon3">Data</span>
+	        <input type="date" class="form-control" placeholder="Data" name="data" id="data" > <!--max="2018-12-31"> -->
+	    </div>
+	    <br>	
+	    <div class="input-group">
+	        <span class="input">Categoria: </span>
+	        <label class="radio-inline"><input type="radio" name="type" value="Mercado">Mercado</label>
+	        <label class="radio-inline"><input type="radio" name="type" value="Vestuario">Vestuario</label>
+	        <label class="radio-inline"><input type="radio" name="type" value="Ferragem">Ferragem</label>
+	        <label class="radio-inline"><input type="radio" name="type" value="Eletronicos">Eletronicos</label>
+	    </div>
+	    <br>	
+	    <div class="input-group input-group-sm">
+	        <span class="input-group-addon" id="sizing-addon4">Picture</span>
+	        <input type="text" class="form-control" placeholder="Picture" name="picture" id="picture">
+	    </div>
+	    <br>
+	    <div class="input-group">
+	        <span class="input">Status: </span>
+	        <label class="radio-inline"><input type="radio" name="status" value="Ativado" checked>Ativar</label>
+	        <label class="radio-inline"><input type="radio" name="status" value="Desativado">Desativar</label>
+	        </div>
+	    <br>
+	
+        <button class="btn btn-lg btn-primary btn-block" th:onclick="${'createAndSendExcluirEncarte(' + idEncarte + ');'}" >Excluir Encarte</button>
+    </div>
     
 </div>
-
 
 </body>
 

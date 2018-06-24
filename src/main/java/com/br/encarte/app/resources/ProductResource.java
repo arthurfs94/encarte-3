@@ -34,12 +34,6 @@ public class ProductResource {
         return product;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public final String delete(@PathVariable("id") Long id) {
-        this.productService.delete(id);
-        return "{}";
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public final Product findById(@PathVariable Long id) {
         return this.productService.findById(id);

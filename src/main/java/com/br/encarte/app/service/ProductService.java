@@ -33,11 +33,6 @@ public class ProductService implements ProductServiceAO {
     }
     
     @Override
-	public void delete(Long id) {
-        this.productRepository.delete(id);
-    }
-
-    @Override
 	public void update(Product product) {
         this.productRepository.save(product);
     }

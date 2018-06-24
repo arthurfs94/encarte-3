@@ -18,7 +18,7 @@
 			});
 		    
 		/*]]>*/
-		</script>
+	</script>
 	
 	<style>
     body { 
@@ -66,60 +66,60 @@
 <br><br><br>
 <div class="container">
 <div class="jumbotron">
-<h1>Tela de Alterar os Encartes</h1>
+<h1>Tela de Alterar Produtos</h1>
 <br>
 
 
-        <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1">Nome do Produto</span>
-            <input type="text" class="form-control" placeholder="Nome" name="name" id="name">
-        </div>
-        <br>
-
-        <div class="input-group">
-            <span class="input-group-addon" id="sizing-addon2">Descrição</span>
-            <input type="text" class="form-control" placeholder="Descrição" name="descrition" id="descrition">
-        </div>
-        <br>
-        <div class="input-group">
-            <span class="input">Tipo: </span>
-            <label class="radio-inline"><input type="radio" name="type" value="Frutas" checked>Frutas</label>
-            <label class="radio-inline"><input type="radio" name="type" value="Chocolate">Chocolate</label>
-            <label class="radio-inline"><input type="radio" name="type" value="Padaria">Padaria</label>
-            <label class="radio-inline"><input type="radio" name="type" value="Bebidas">Bebidas</label>
-            <label class="radio-inline"><input type="radio" name="type" value="Frios">Frios</label>
-            <label class="radio-inline"><input type="radio" name="type" value="Biscoitos">Biscoitos</label>
-            <label class="radio-inline"><input type="radio" name="type" value="Carnes">Carnes</label>
-            <label class="radio-inline"><input type="radio" name="type" value="Utensilios para Casa">Utensilios para Casa</label>
-            <label class="radio-inline"><input type="radio" name="type" value="Ferragem">Ferragem</label>
-            <label class="radio-inline"><input type="radio" name="type" value="Vestuario">Vestuario</label>
-            <label class="radio-inline"><input type="radio" name="type" value="Casa e Conforto">Casa e Conforto</label>
-            <label class="radio-inline"><input type="radio" name="type" value="Material Escolar">Material Escolar</label>
-        </div>
-        <br>
-        <div class="input-group">
-            <span class="input-group-addon" id="sizing-addon2">Valor do Produto</span>
-            <input type="text" class="form-control" placeholder="Valor" name="value" id="value">
-        </div>
-        <br>
-        <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="sizing-addon3">Adicionar Foto do Produto</span>
-            <input type="text" class="form-control" placeholder="Link" name="picture" id="picture">
-        </div>
-        <br>
-        <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="sizing-addon3">Codigo de Barras</span>
-            <input type="text" class="form-control" placeholder="Codigo de Barras" name="serial" id="serial">
-        </div>
-        <br>
-        <div class="alert alert-info">
-  			<strong>Estabelecimento:  </strong> 
-  			<marketcredent></marketcredent>
-		</div>
-        <main6></main6>
-
-        <br>
-        <button class="btn btn-lg btn-primary btn-block" th:onclick="${'createAndSendProduct(' + idProd + ');'}" >Alterar Produto</button>
+	<div class="input-group input-group-lg">
+	    <span class="input-group-addon" id="sizing-addon1">Nome do Produto</span>
+	    <input type="text" class="form-control" placeholder="Nome" name="name" id="name">
+	</div>
+	<br>
+	
+	<div class="input-group">
+	    <span class="input-group-addon" id="sizing-addon2">Descrição</span>
+	    <input type="text" class="form-control" placeholder="Descrição" name="descrition" id="descrition">
+	</div>
+	<br>
+	<div class="input-group">
+	    <span class="input">Tipo: </span>
+	    <label class="radio-inline"><input type="radio" name="type" value="Frutas" checked>Frutas</label>
+	    <label class="radio-inline"><input type="radio" name="type" value="Chocolate">Chocolate</label>
+	    <label class="radio-inline"><input type="radio" name="type" value="Padaria">Padaria</label>
+	    <label class="radio-inline"><input type="radio" name="type" value="Bebidas">Bebidas</label>
+	    <label class="radio-inline"><input type="radio" name="type" value="Frios">Frios</label>
+	    <label class="radio-inline"><input type="radio" name="type" value="Biscoitos">Biscoitos</label>
+	    <label class="radio-inline"><input type="radio" name="type" value="Carnes">Carnes</label>
+	    <label class="radio-inline"><input type="radio" name="type" value="Utensilios para Casa">Utensilios para Casa</label>
+	    <label class="radio-inline"><input type="radio" name="type" value="Ferragem">Ferragem</label>
+	    <label class="radio-inline"><input type="radio" name="type" value="Vestuario">Vestuario</label>
+	    <label class="radio-inline"><input type="radio" name="type" value="Casa e Conforto">Casa e Conforto</label>
+	    <label class="radio-inline"><input type="radio" name="type" value="Material Escolar">Material Escolar</label>
+	</div>
+	<br>
+	<div class="input-group">
+	    <span class="input-group-addon" id="sizing-addon2">Valor do Produto</span>
+	    <input type="text" class="form-control" placeholder="Valor" name="value" id="value">
+	</div>
+	<br>
+	<div class="input-group input-group-sm">
+	    <span class="input-group-addon" id="sizing-addon3">Adicionar Foto do Produto</span>
+	    <input type="text" class="form-control" placeholder="Link" name="picture" id="picture">
+	</div>
+	<br>
+	<div class="input-group input-group-sm">
+	    <span class="input-group-addon" id="sizing-addon3">Codigo de Barras</span>
+	    <input type="text" class="form-control" placeholder="Codigo de Barras" name="serial" id="serial">
+	</div>
+	<br>
+	<div class="alert alert-info">
+		<strong>Estabelecimento:  </strong> 
+		<marketcredent></marketcredent>
+	</div>
+	<main6></main6>
+	
+	<br>
+	<button class="btn btn-lg btn-primary btn-block" th:onclick="${'createAndSendProduct(' + idProd + ');'}" >Alterar Produto</button>
         
         
 </div>

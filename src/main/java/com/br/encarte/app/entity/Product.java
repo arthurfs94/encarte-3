@@ -5,11 +5,11 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -32,9 +32,10 @@ public class Product implements Serializable {
     @JoinColumn(name = "idMarket")
     private Market market;
     
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "product")
+    @ManyToMany
+    @JoinTable(name="product_encarte", joinColumns=@JoinColumn(name="idProduct"), inverseJoinColumns=@JoinColumn(name="idEncarte"))		
     @JsonIgnore
-	private Set<Encarte> encarte;
+    private Set<Encarte> encarte;
     
     @Column(name = "NAME", length = 100)
     private String name;

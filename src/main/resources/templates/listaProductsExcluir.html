@@ -9,7 +9,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="/static/js/Principal.js"></script>
   <script src="/static/js/functions.js"></script>
-  <style>
+  <script>
+		$(document).ready(function(){
+			listarProductsExcluir();
+		});
+  </script>
+  
+    <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
@@ -23,7 +29,7 @@
     }
     
   .carousel-inner img {
-      width: 100%; /* Set width to 100% */
+      width: 90%; /* Set width to 100% */
       margin: auto;
       min-height:200px;
   }
@@ -37,8 +43,15 @@
      body { 
    background-image: url('http://2.bp.blogspot.com/_lS-sZAoamTA/TQurXJpI6wI/AAAAAAAAAyY/rMjAod8Xam8/s1600/re.jpg'); 
    } 
+   span {
+   cursor:Pointer;
+   }
    
-   
+  .jumbotron {
+    	 cursor:Pointer;
+    	   
+    	   }
+  
   </style>
 </head>
 <body>
@@ -54,54 +67,48 @@
        <a class="navbar-brand" href="/mercado">Encarte Digital</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a onclick="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-      </ul>
+<!--       <ul class="nav navbar-nav"> -->
+<!--           <li> -->
+<!--           	<a id="gerProd" href="/gerenciamentoproduto">Gerenciamento Produtos</a> -->
+<!--           </li> -->
+          
+<!--           <li> -->
+<!--           	<a id="gerProd" href="gerenciamentoencartes">Gerenciamento Encartes</a> -->
+<!--       	  </li> -->
+      	  
+<!--       	  <li> -->
+<!--           	<a id="gerProd" href="listaencartesproducts">Vincular Produtos aos Encartes</a> -->
+<!--       	  </li> -->
+          
+<!--       </ul> -->
+<!--       <ul class="nav navbar-nav navbar-right"> -->
+<!--         <li><a onclick="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li> -->
+<!--       </ul> -->
     </div>
   </div>
 </nav>
-<BR>
+
+
+
+
+
 <div class="container">
-<div class="jumbotron">
-    <h2><li>Gerenciamento dos Encartes</li></h2>
-    <p></p>      
-          
-<!--     <table class="table"> -->
-<!--       <thead> -->
-<!--         <tr> -->
-<!--          <th>Adicionar</th>
-<!--           <th>Alterar</th> -->
-<!--           <th>Remover</th> -->
-<!--           <th>Listar</th> -->
-<!--         </tr> -->
-<!--       </thead> -->
-<!--       <tbody> -->
-<!--         <tr> -->
-<!--           <td> -->
-          
-          <div class="container">
-          
-  <div class="row">
-    <div class="col-sm">
-      <a class="btn btn-lg btn-primary btn-block" href="encarteregistration">Cadastrar</a>
-     <BR>
-      <a class="btn btn-lg btn-primary btn-block" href="listaEncartesAlterar">Alterar</a>        
-      <BR>
-      <a class="btn btn-lg btn-primary btn-block" href="listaencartesexcluir">Excluir</a>
-       <BR>  
-      <a class="btn btn-lg btn-primary btn-block" id="gerProd" href="listaencartes">Listar</a>
-          </div>
-   </div>
-   </div>
-   </div>
-<!--           	<a class="btn btn-lg btn-primary btn-block" id="gerProd" href="listaencartesproducts">Adicionar Produtos</a> -->
-<!--           </td> -->
-<!--         </tr> -->
-<!--       </tbody> -->
-<!--     </table> -->
-  </div>   
+
+	<div class="jumbotron">
+		<h2>Produtos do Estabelecimento</h2>
+		<main5></main5>
+	</div>
+</div>
+    
+ 
+
+</div>
+</div> 
+ <br>
+
+<!-- <footer class="container-fluid text-center"> -->
+<!--   <h2>Todos juntos lutando com o meio ambiente!</h2> -->
+<!-- </footer> -->
 
 </body>
 </html>

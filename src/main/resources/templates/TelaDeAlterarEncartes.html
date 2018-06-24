@@ -67,41 +67,41 @@
 
         <!-- <button type="button" class="btn btn-primary" onclick="read('encarte', 'id_user', 'name-form')">Pesquisar</button> -->
      <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1">Nome do Encarte</span>
-            <input type="text" class="form-control" placeholder="Nome" name="name" id="name">
+        <span class="input-group-addon" id="sizing-addon1">Nome do Encarte</span>
+        <input type="text" class="form-control" placeholder="Nome" name="name" id="name">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon2">Descrição</span>
+        <input type="text" class="form-control" placeholder="Descrição" name="description" id="description">
+    </div>
+    <br>
+    <div class="input-group input-group-sm">
+        <span class="input-group-addon" id="sizing-addon3">Data</span>
+        <input type="date" class="form-control" placeholder="Data" name="data" id="data" > <!--max="2018-12-31"> -->
+    </div>
+    <br>	
+    <div class="input-group">
+        <span class="input">Categoria: </span>
+        <label class="radio-inline"><input type="radio" name="type" value="Mercado">Mercado</label>
+        <label class="radio-inline"><input type="radio" name="type" value="Vestuario">Vestuario</label>
+        <label class="radio-inline"><input type="radio" name="type" value="Ferragem">Ferragem</label>
+        <label class="radio-inline"><input type="radio" name="type" value="Eletronicos">Eletronicos</label>
+    </div>
+    <br>	
+    <div class="input-group input-group-sm">
+        <span class="input-group-addon" id="sizing-addon4">Picture</span>
+        <input type="text" class="form-control" placeholder="Picture" name="picture" id="picture">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input">Status: </span>
+        <label class="radio-inline"><input type="radio" name="status" value="Ativado" checked>Ativar</label>
+        <label class="radio-inline"><input type="radio" name="status" value="Desativado">Desativar</label>
         </div>
-        <br>
-        <div class="input-group">
-            <span class="input-group-addon" id="sizing-addon2">Descrição</span>
-            <input type="text" class="form-control" placeholder="Descrição" name="description" id="description">
-        </div>
-        <br>
-        <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="sizing-addon3">Data</span>
-            <input type="date" class="form-control" placeholder="Data" name="data" id="data" > <!--max="2018-12-31"> -->
-        </div>
-        <br>	
-        <div class="input-group">
-            <span class="input">Categoria: </span>
-            <label class="radio-inline"><input type="radio" name="type" value="Mercado">Mercado</label>
-            <label class="radio-inline"><input type="radio" name="type" value="Vestuario">Vestuario</label>
-            <label class="radio-inline"><input type="radio" name="type" value="Ferragem">Ferragem</label>
-            <label class="radio-inline"><input type="radio" name="type" value="Eletronicos">Eletronicos</label>
-        </div>
-        <br>	
-        <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="sizing-addon4">Picture</span>
-            <input type="text" class="form-control" placeholder="Picture" name="picture" id="picture">
-        </div>
-        <br>
-        <div class="input-group">
-            <span class="input">Status: </span>
-            <label class="radio-inline"><input type="radio" name="status" value="Ativado" checked>Ativar</label>
-            <label class="radio-inline"><input type="radio" name="status" value="Desativado">Desativar</label>
-            </div>
-        <br>
+    <br>
 
-        <button class="btn btn-lg btn-primary btn-block" th:onclick="${'createAndSendEncarte(' + idEncarte + ');'}" >Alterar Encarte</button>
+    <button class="btn btn-lg btn-primary btn-block" th:onclick="${'createAndSendEncarte(' + idEncarte + ');'}" >Alterar Encarte</button>
         
         
 </div>
