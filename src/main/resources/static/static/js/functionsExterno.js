@@ -62,6 +62,21 @@ function read(param, id, form) {
 }
 
 
+function pesquisaTodosProdutos() {
+
+	document.querySelector("#tipo-busca").value = "product";
+	$.ajax({
+        type: "GET",
+        url: window.location.href + "/productname/",
+        contentType: "application/json",
+        success: function(data) {
+      		carregarTelaInicial(data);
+      		return; 
+    	}
+        
+    });
+}
+
 
 function pesquisaPrincipal() {
 	var param = document.querySelector("#pesquisaNome").value;
@@ -119,7 +134,6 @@ function updatePrincipal(param, form) {
     success();
     }
 }
-
 
 
 
