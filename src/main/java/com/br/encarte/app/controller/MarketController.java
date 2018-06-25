@@ -64,6 +64,7 @@ public class MarketController {
     @RequestMapping("/paginamercado/{idMarket}")
     public String PaginaMercado(Model model, @PathVariable Long idMarket) {
     	
+    	model.addAttribute("titulo", "Encartes Atuais!");
     	model.addAttribute("listaEncartes", marketService.montarListaEncarte(idMarket));
     	model.addAttribute("listaProducts", marketService.montarListaProducts(idMarket));
         return "PaginaMercado";

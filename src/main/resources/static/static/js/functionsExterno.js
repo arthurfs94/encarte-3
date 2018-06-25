@@ -180,6 +180,8 @@ function carregarTelaInicial(obj) {
 		str += "</dd>";
 		
 		if(tipoBusca == 'product'){
+			document.querySelector("titulo").innerHTML = "<h1>Produtos Filtrados!</h1>";
+			
 			str += "<strong> Nome do produto: </strong>"
 					+ obj[i].name;
 
@@ -207,6 +209,8 @@ function carregarTelaInicial(obj) {
 					+ obj[i].localidade;
 			
 		}else if(tipoBusca == 'encarte'){
+			document.querySelector("titulo").innerHTML = "<h1>Encartes Filtrados!</h1>";
+			
 			str += "<strong>Nome do Encarte: </strong>" + obj[i].name;
 			str += "<dl>";
 			str += "</dd>";
