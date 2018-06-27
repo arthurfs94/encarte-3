@@ -48,7 +48,17 @@ public class ProductService implements ProductServiceAO {
     }
 
 	public Product convert(ProductRequest product) {
-		Product productNovo = new Product();
+		Product productNovo;
+		
+		if(product.getId() != null) {
+			productNovo = productRepository.findOne(product.getId());
+		}else {
+			productNovo = new Product();
+			Market market = new Market();
+			market.setId(product.getIdMarket());
+			productNovo.setMarket(market);
+		}
+		
 		productNovo.setId(product.getId());
 		productNovo.setDescrition(product.getDescrition());
 		productNovo.setName(product.getName());
@@ -56,10 +66,6 @@ public class ProductService implements ProductServiceAO {
 		productNovo.setSerial(product.getSerial());
 		productNovo.setType(product.getType());
 		productNovo.setValue(product.getValue());
-		
-		Market market = new Market();
-		market.setId(product.getIdMarket());
-		productNovo.setMarket(market);
 		
 		return productNovo;
 	}
