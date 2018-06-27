@@ -2,6 +2,7 @@ package com.br.encarte.app.service;
 
 import com.br.encarte.app.entity.Encarte;
 import com.br.encarte.app.entity.Market;
+import com.br.encarte.app.entity.MarketRequest;
 import com.br.encarte.app.repository.EncarteRepository;
 import com.br.encarte.app.repository.MarketRepository;
 import com.br.encarte.app.service.inter.MarketServiceAO;
@@ -9,6 +10,7 @@ import com.br.encarte.app.specification.EncarteSpecification;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -122,5 +124,21 @@ public class MarketService implements MarketServiceAO {
 
 	public Object montarListaProducts(Long idMarket) {
 		return productService.montarListaMaketProduto(idMarket);
+	}
+
+	public Market convert(MarketRequest marketRequest) {
+		Market market = new Market();
+		
+		market.setName(marketRequest.getName());
+		market.setUsername(marketRequest.getUsername());
+		market.setCnpj(marketRequest.getCnpj());
+		market.setPicture(marketRequest.getPicture());
+		market.setLoja(marketRequest.getLoja());
+		market.setLocalidade(marketRequest.getLocalidade());
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		market.setPassword(passwordEncoder.encode(marketRequest.getPassword()));
+		
+		return market;
 	}
 }

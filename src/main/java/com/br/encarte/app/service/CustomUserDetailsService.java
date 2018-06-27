@@ -25,12 +25,33 @@ public class CustomUserDetailsService implements UserDetailsService {
             throws UsernameNotFoundException {
 
     	Market market = marketRepository.findByUsername(usernameOrEmail);
+    	
+    	UserDetails userDetails;
+    	if(market != null) {
+    		GrantedAuthority authority = new SimpleGrantedAuthority("market");
+    		
+    		userDetails = (UserDetails)new User(market.getUsername(),
+    				market.getPassword(), Arrays.asList(authority));
+    	}else {
+    		if("admin".equals(usernameOrEmail)) {
+    			GrantedAuthority authority = new SimpleGrantedAuthority("admin");
+    			
+    			userDetails = (UserDetails)new User(
+    						usernameOrEmail,
+    						"$2a$04$mWJQfIE1rfIcAUgCvC6aPOsLDbka8GVGc/7n/Zkk087Ki1ABcH30S", 
+    						Arrays.asList(authority)
+    			);
+    			
+    		}else {
+    			//error
+    			GrantedAuthority authority = new SimpleGrantedAuthority("");
+    			userDetails = (UserDetails)new User(null,
+    					null, Arrays.asList(authority));
+    			
+    		}
+    	}
         
-
-    	GrantedAuthority authority = new SimpleGrantedAuthority("admin");
-		UserDetails userDetails = (UserDetails)new User(market.getUsername(),
-				market.getPassword(), Arrays.asList(authority));
-
+		
 		return userDetails;
 
     }

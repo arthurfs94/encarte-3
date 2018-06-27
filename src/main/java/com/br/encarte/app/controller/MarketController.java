@@ -7,10 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.br.encarte.app.entity.Market;
+import com.br.encarte.app.entity.MarketRequest;
 import com.br.encarte.app.repository.MarketRepository;
 import com.br.encarte.app.service.MarketService;
 import com.br.encarte.app.specification.MarketSpecification;
@@ -31,7 +34,7 @@ public class MarketController {
         return "gerenciamentoMercados";
     }
 
-    @RequestMapping("/TelaDeCadastroDeMercados")
+    @RequestMapping("/telaCadastroDeMercados")
     public String cadastro_mercado(Model model) {
         return "TelaDeCadastroDeMercados";
     }
@@ -108,5 +111,16 @@ public class MarketController {
     @GetMapping("/Principal/marketname")
     public List<Market> findAllByPrincipal() {
     	return Lists.newArrayList(marketRepository.findAll());
+    }
+    
+    @RequestMapping("/admin")
+    public String admin(Model model) {
+        return "homeAdmin";
+    }
+    
+    @PostMapping("/market/cadastrar")
+    @ResponseBody
+    public Market save(@RequestBody MarketRequest marketRequest) {
+    	return marketRepository.save( marketService.convert(marketRequest));
     }
 }

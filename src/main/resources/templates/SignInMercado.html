@@ -131,33 +131,33 @@
 		    }),
 		    success: function(data, textStatus, request){
 		    
-		    	document.cookie = "Authorization=" + request.getResponseHeader('Authorization');
+		    	var token = request.getResponseHeader('Authorization');
+		    
+		    	document.cookie = "Authorization=" + token;
 		    	
-		    	$.ajax({
-				    url: '/market/username/' + (parseJwt(request.getResponseHeader('Authorization'))).sub,
-				    type: 'GET',
-				    contentType: 'application/json',
-				    success: function(data){
-
-						document.cookie = "id_market=" +  data[0].id;
-						document.cookie = "name_market=" +  data[0].name;
-						
-						window.location.href = '/mercado';				    	
-
-					    /*$.ajax({
-						    url: '/Mercado',
-						    type: 'GET',
-						    contentType: 'application/json',
-						    success: function(data){
-						    	
-						    	document.open();
-						        document.write(data);
-						        document.close();
-				            
-					        }
-					    }); */
-			        }
-			    });
+		    	var jwtData = token.split('.')[1]
+				var decodedJwtJsonData = window.atob(jwtData)
+				var decodedJwtData = JSON.parse(decodedJwtJsonData)
+				
+			
+				console.log('decodedJwtData: ' + decodedJwtData.sub)
+		    	
+		    	if(decodedJwtData.sub != "admin"){
+			    	$.ajax({
+					    url: '/market/username/' + (parseJwt(request.getResponseHeader('Authorization'))).sub,
+					    type: 'GET',
+					    contentType: 'application/json',
+					    success: function(data){
+	
+							document.cookie = "id_market=" +  data[0].id;
+							document.cookie = "name_market=" +  data[0].name;
+							
+							window.location.href = '/mercado';				    	
+				        }
+				    });
+		    	}else if (decodedJwtData.sub == "admin"){
+					window.location.href = '/admin';				    	
+		    	}
 		        
 		   },
 		   error: function (request, textStatus, errorThrown) {

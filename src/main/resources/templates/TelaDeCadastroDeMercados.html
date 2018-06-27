@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="../static/js/functions.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     <title>Tela de Cadastro de Mercados</title>
@@ -22,6 +21,8 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
            
+    <script src="/static/js/functionsAdmin.js"></script>
+    
 </head>
 
 <style>
@@ -31,74 +32,72 @@
    
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Encarte Digital</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-        </div>
-    </div>
-</nav>
-<br><br><br>
-<div class="container" method="post" name="myform">
-   <div class="jumbotron">
-<h1>Tela de Cadastro de Mercados</h1>
-<br>
-    <form id="form">
-        <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1">Nome do Mercado</span>
-            <input type="text" class="form-control" placeholder="Nome" name="name">
-        </div>
-        <br>
-        <div class="input-group">
-            <span class="input-group-addon" id="sizing-addon2">Usuario de Acesso</span>
-            <input type="text" class="form-control" placeholder="Usuario" name="username">
-        </div>
-        <br>
-        <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="sizing-addon3">Senha</span>
-            <input type="text" class="form-control" placeholder="senha de Acesso" name="password">
-        </div>
-        <br>
-        <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="sizing-addon5">Loja</span>
-            <input type="text" class="form-control" placeholder="Loja" name="loja">
-        </div>
-        <br>
-        <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="sizing-addon6">CNPJ</span>
-            <input type="text" class="form-control" placeholder="CNPJ" name="cnpj">
-        </div>
-        <br>
-        <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="sizing-addon4">Link</span>
-            <input type="text" class="form-control" placeholder="Link da foto" name="picture">
-        </div>
-        <br>	
-		<div class="input-group">
-            <span class="input">Localidade: </span>
-            <label class="radio-inline"><input type="radio" name="localidade" value="Porto Alegre" checked>Porto Alegre</label>
-            <label class="radio-inline"><input type="radio" name="localidade" value="Canoas">Canoas</label>
-            <label class="radio-inline"><input type="radio" name="localidade" value="Gravatai">Gravatai</label>
-            <label class="radio-inline"><input type="radio" name="localidade" value="Cachoeirinha">Cachoeirinha</label>
-            <label class="radio-inline"><input type="radio" name="localidade" value="Sapucaia">Sapucaia</label>
-            <label class="radio-inline"><input type="radio" name="localidade" value="São Leopoldo">São Leopoldo</label>
-            <label class="radio-inline"><input type="radio" name="localidade" value="Novo Hamburgo">Novo Hamburgo</label>
-        </div>
-        <br>	
-        <button class="btn btn-lg btn-primary btn-block" onclick="create('market', 'form')">Inserir
-            novo Estabelecimento
-        </button>
-    </form>
-</div>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	    <div class="container-fluid">
+	        <div class="navbar-header">
+	            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+	                    aria-expanded="false" aria-controls="navbar">
+	                <span class="sr-only">Toggle navigation</span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </button>
+	            <a class="navbar-brand" href="/">Encarte Digital</a>
+	        </div>
+	        <div id="navbar" class="navbar-collapse collapse">
+	        </div>
+	    </div>
+	</nav>
+	<br><br><br>
+	<div class="container" method="post" name="myform">
+	   <div class="jumbotron">
+			<h1>Tela de Cadastro de Mercados</h1>
+			<br>
+	        <div class="input-group input-group-lg">
+	            <span class="input-group-addon" id="sizing-addon1">Nome do Mercado</span>
+	            <input type="text" class="form-control" placeholder="Nome" name="name" id="name">
+	        </div>
+	        <br>
+	        <div class="input-group">
+	            <span class="input-group-addon" id="sizing-addon2">Usuario de Acesso</span>
+	            <input type="text" class="form-control" placeholder="Usuario" name="username" id="username">
+	        </div>
+	        <br>
+	        <div class="input-group input-group-sm">
+	            <span class="input-group-addon" id="sizing-addon3">Senha</span>
+	            <input type="text" class="form-control" placeholder="senha de Acesso" name="password" id="password">
+	        </div>
+	        <br>
+	        <div class="input-group input-group-sm">
+	            <span class="input-group-addon" id="sizing-addon5">Loja</span>
+	            <input type="text" class="form-control" placeholder="Loja" name="loja" id="loja">
+	        </div>
+	        <br>
+	        <div class="input-group input-group-sm">
+	            <span class="input-group-addon" id="sizing-addon6">CNPJ</span>
+	            <input type="text" class="form-control" placeholder="CNPJ" name="cnpj" id="cnpj">
+	        </div>
+	        <br>
+	        <div class="input-group input-group-sm">
+	            <span class="input-group-addon" id="sizing-addon4">Link</span>
+	            <input type="text" class="form-control" placeholder="Link da foto" name="picture" id="picture">
+	        </div>
+	        <br>	
+			<div class="input-group">
+	            <span class="input">Localidade: </span>
+	            <label class="radio-inline"><input type="radio" name="localidade" value="Porto Alegre" checked>Porto Alegre</label>
+	            <label class="radio-inline"><input type="radio" name="localidade" value="Canoas">Canoas</label>
+	            <label class="radio-inline"><input type="radio" name="localidade" value="Gravatai">Gravatai</label>
+	            <label class="radio-inline"><input type="radio" name="localidade" value="Cachoeirinha">Cachoeirinha</label>
+	            <label class="radio-inline"><input type="radio" name="localidade" value="Sapucaia">Sapucaia</label>
+	            <label class="radio-inline"><input type="radio" name="localidade" value="São Leopoldo">São Leopoldo</label>
+	            <label class="radio-inline"><input type="radio" name="localidade" value="Novo Hamburgo">Novo Hamburgo</label>
+	        </div>
+	        <br>	
+
+	        <button class="btn btn-lg btn-primary btn-block" onclick="createAndSendMarket()">Salvar Mercado</button>
+		</div>
+	</div>
 
 
 </body>
