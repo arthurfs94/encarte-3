@@ -67,7 +67,18 @@ public class EncarteService implements EncarteServiceAO {
     }
     
     public Encarte convert(EncarteRequest encarte) {
-		Encarte encarteNovo = new Encarte();
+		Encarte encarteNovo;
+		
+		if(encarte.getId() != null) {
+			encarteNovo = encarteRepository.findOne(encarte.getId());
+		}else {
+			encarteNovo = new Encarte();
+			
+			Market market = new Market();
+			market.setId(encarte.getIdMarket());
+			encarteNovo.setMarket(market);
+		}
+		
 		encarteNovo.setId(encarte.getId());
 		encarteNovo.setDescription(encarte.getDescription());
 		encarteNovo.setName(encarte.getName());
@@ -75,10 +86,6 @@ public class EncarteService implements EncarteServiceAO {
 		encarteNovo.setStatus(encarte.getStatus());
 		encarteNovo.setType(encarte.getType());
 		encarteNovo.setData(encarte.getData());
-		
-		Market market = new Market();
-		market.setId(encarte.getIdMarket());
-		encarteNovo.setMarket(market);
 		
 		return encarteNovo;
 	}
