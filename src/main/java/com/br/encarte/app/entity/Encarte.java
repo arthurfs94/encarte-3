@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -55,6 +56,9 @@ public class Encarte implements Serializable {
     
     @Column(name = "TYPE", length = 20)
     private String type;
+    
+    @Transient
+    private String marketName;
     
     public Encarte
     (Long id, String name, String description, String data, String picture, String status, String type) {
@@ -176,4 +180,17 @@ public class Encarte implements Serializable {
         result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
     }
+
+	public String getMarketName() {
+		if(market != null) {
+			return market.getName();
+		}
+		return null;
+	}
+
+	public void setMarketName(String marketName) {
+		this.marketName = marketName;
+	}
+    
+    
 }

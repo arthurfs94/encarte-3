@@ -98,13 +98,15 @@ public class EncarteController {
     @ResponseBody
     @GetMapping("/Principal/encartename/{name}")
     public List<Encarte> findByNamePrincipal(@PathVariable String name) {
-    	return encarteRepository.findAll(EncarteSpecification.name(name));
+    	Specifications<Encarte> where = Specifications.where(EncarteSpecification.name(name));
+    	where = where.and(EncarteSpecification.dataLimite());
+    	return encarteRepository.findAll(where);
     }
     
     @ResponseBody
     @GetMapping("/Principal/encartename")
     public List<Encarte> findByNamePrincipal() {
-    	return Lists.newArrayList(encarteRepository.findAll());
+    	return encarteRepository.findAll(EncarteSpecification.dataLimite());
     }
     
     @ResponseBody
@@ -116,9 +118,7 @@ public class EncarteController {
     @GetMapping("/market/{idMarket}/encarte")
     @ResponseBody
     public List<Encarte> findEncarteByMarket(@PathVariable Long idMarket) {
-    	Specifications<Encarte> where = null;
-    	where = Specifications.where(EncarteSpecification.marketId(idMarket));
-
+    	Specifications<Encarte> where = Specifications.where(EncarteSpecification.marketId(idMarket));
     	return encarteRepository.findAll(where);
     }
     
@@ -148,6 +148,7 @@ public class EncarteController {
     	Specifications<Encarte> where = null;
     	where = Specifications.where(EncarteSpecification.name(encarteName));
     	where = where.and(Specifications.where(EncarteSpecification.marketId(idMarket)));
+    	where = where.and(Specifications.where(EncarteSpecification.dataLimite()));
     	
     	return encarteRepository.findAll(where);
     }
@@ -156,6 +157,7 @@ public class EncarteController {
     @ResponseBody
     public List<Encarte> findAllByMarketEncarte(@PathVariable Long idMarket) {
     	Specifications<Encarte> where = Specifications.where(EncarteSpecification.marketId(idMarket));
+    	where = where.and(Specifications.where(EncarteSpecification.dataLimite()));
     	return encarteRepository.findAll(where);
     }
     

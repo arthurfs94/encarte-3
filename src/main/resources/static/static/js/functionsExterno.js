@@ -323,6 +323,9 @@ function carregarTelaPrincipal(obj) {
 			str += "<strong>Nome do Encarte: </strong>" + obj[i].name;
 			str += "<dl>";
 			str += "</dd>";
+			str += "<strong>Nome do Estabelecimento: </strong>" + obj[i].marketName;
+			str += "<dl>";
+			str += "</dd>";
 			str += "<strong>Status: </strong>" + obj[i].status;
 			str += "<dl>";
 			str += "</dd>";

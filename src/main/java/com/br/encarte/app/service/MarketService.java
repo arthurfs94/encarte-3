@@ -67,6 +67,7 @@ public class MarketService implements MarketServiceAO {
 	public Object montarListaEncarte(Long idMercado) {
 		
 		Specifications<Encarte> where = Specifications.where(EncarteSpecification.marketId(idMercado));
+		where = where.and(Specifications.where(EncarteSpecification.dataLimite()));
     	List<Encarte> encartes = encarteRepository.findAll(where);
 		
 		String  str = "";
